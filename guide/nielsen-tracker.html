@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <link rel="stylesheet" href="styles/pojoaque.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <script src="highlight.pack.js"></script>
+    <script src="highlightjs-badge.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        setTimeout(function () {
+            var pres = document.querySelectorAll("pre>code");
+            for (var i = 0; i < pres.length; i++) {
+                hljs.highlightBlock(pres[i]);
+            }
+            var options = {
+                contentSelector: ".container",
+                // Delay in ms used for `setTimeout` before badging is applied
+                // Use if you need to time highlighting and badge application
+                // since the badges need to be applied afterwards.
+                // 0 - direct execution (ie. you handle timing
+                loadDelay:0,
+    
+                // CSS class(es) used to render the copy icon.
+                copyIconClass: "fa fa-copy",
+                // CSS class(es) used to render the done icon.
+                checkIconClass: "fa fa-check text-success",
+              
+                // hook to allow modifying the text before it's pasted
+                onBeforeTextCopied: function(text, codeElement) {
+                  return text;   //  you can fix up the text here
+                }
+            };
+            window.highlightJsBadge(options);
+        },10);
+    </script>
+</head>
+<body>
+<div class="container">
+<!-- <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="merdeka-tab" data-toggle="tab" href="#merdeka" role="tab" aria-controls="merdeka" aria-selected="true">m.merdeka.com</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="otosia-tab" data-toggle="tab" href="#otosia" role="tab" aria-controls="otosia" aria-selected="true">m.otosia.com</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="kapanlagi-tab" data-toggle="tab" href="#kapanlagi" role="tab" aria-controls="kapanlagi" aria-selected="false">m.kapanlagi.com</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="dream-tab" data-toggle="tab" href="#dream" role="tab" aria-controls="dream" aria-selected="false">m.dream.co.id</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="bolanet-tab" data-toggle="tab" href="#bolanet" role="tab" aria-controls="bolanet" aria-selected="false">m.bola.net</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="fimela-tab" data-toggle="tab" href="#fimela" role="tab" aria-controls="fimela" aria-selected="false">m.fimela.com</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="bolacom-tab" data-toggle="tab" href="#bolacom" role="tab" aria-controls="bolacom" aria-selected="false">m.bola.com</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="liputan6-tab" data-toggle="tab" href="#liputan6" role="tab" aria-controls="liputan6" aria-selected="false">m.liputan6.com</a>
+    </li>
+</ul> -->
+<nav>
+    <div class="nav nav-tabs " id="nav-tab" role="tablist">
+     <a class="nav-item nav-link active" id="fimela-tab" data-toggle="tab" href="#fimela" role="tab" aria-controls="fimela" aria-selected="false">NIELSEN TRACKER</a>
+    </div>
+</nav>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="fimela" role="tabpanel" aria-labelledby="fimela-tab">
+        <h3 style="background-color:#181914;color:#ffb03b;padding:10px">Tambahkan block script berikut di Header</h3>
+            <pre><code class="javascript">
+                &lt;script&gt;
+                    window.addEventListener('DOMContentLoaded',function(){
+                        const _KLY_NIELSEN_TRACKER = ["249314", "249321", "249322", "249323", "249324", "249336", "249338", "249339", "249340", "249342", "249472", "249473", "249475", "249477", "249478", "249479", "249480", "249481", "249483", "249484", "249485", "249486", "249487", "249488", "249489", "249499", "249500", "249501", "249502", "249503", "249506", "249508", "249509", "249510", "249511", "249513", "249514", "249515", "249516", "249517", "249518", "249519", "249520", "249521", "249522", "249523", "249524", "249525", "249526", "249527", "249535", "249537", "249538", "249540", "249541", "249543", "249544", "249546", "249547", "249548", "249549", "249550", "249551", "249552", "249553", "249555", "249556", "249557", "249558", "249560", "249561", "249562", "249563", "249564", "249565", "249566", "249567", "249568", "249570", "249571", "249573", "249574", "249576", "249577", "249579", "249580", "249581", "249582", "249583", "249584", "249585", "249586", "249587", "249589", "249590", "249591", "249592", "249593", "249594", "249595"];
+                        const _COOKIE_LIFE_TIME = 90;
+        
+                        _klySettingupNielsen();
+        
+                        function _klySettingupNielsen() {
+                            // get visitor id
+                            var _visitor = _klyGetCookie("visitor_id") ? _klyGetCookie("visitor_id") : "";
+                            // get nielsen tracker id
+                            var _nielsen = (parseInt(_klyGetCookie("KLY_Nielsen"))) ? parseInt(_klyGetCookie("KLY_Nielsen")) : "";
+        
+                            //checking nielsen tracker value
+                            if (_nielsen) {
+                                // update cookie 
+                                _klySetCookie("KLY_Nielsen", _nielsen, _COOKIE_LIFE_TIME);
+                                //inject tracker pixel
+                                _klyCreateNielsenTracker(_nielsen, _visitor);
+                                console.log('added tracker 1');
+        
+                            } else {
+        
+                                // get random nilesen tracker
+                                var new_nielsen = _KLY_NIELSEN_TRACKER[Math.floor(Math.random() * 100) + 1];
+                                //create cookie
+                                _klySetCookie("KLY_Nielsen", new_nielsen, _COOKIE_LIFE_TIME);
+                                //inject tracker pixel
+                                _klyCreateNielsenTracker(new_nielsen, _visitor);
+                                console.log('added tracker 2');
+                            }
+                        }
+        
+                        function _klyGetCookie(e) {
+                            var n = document.cookie,
+                            t = n.indexOf(" " + e + "=");
+                            if (-1 == t && (t = n.indexOf(e + "=")), -1 == t) n = null;
+                            else {
+                                t = n.indexOf("=", t) + 1;
+                                var i = n.indexOf(";", t); - 1 == i && (i = n.length), n = unescape(n.substring(t, i))
+                            }
+                            return n
+                        }
+        
+                        function _klySetCookie(name, value, days) {
+        
+                            var expires = "";
+        
+                            if (days) {
+                                var date = new Date();
+                                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                expires = "; expires=" + date.toUTCString();
+                            }
+        
+                            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+                        }
+        
+        
+                        function _klyCreateNielsenTracker(tracking_pixel_id, visitor_id) {
+        
+                            var _tracker = `https://secure-gl.imrworldwide.com/cgi-bin/m?ca=nlsn${tracking_pixel_id}&cr=crtve&ce=liputan6&pc=${visitor_id}&ci=nlsnci1588&am=3&at=view&rt=banner&st=image&r={timestamp}`;
+                            var _img = document.createElement("img");
+                            _img.setAttribute("class", "nielsen-tracker");
+                            _img.setAttribute("src", _tracker);
+                            _img.setAttribute("style", "display:none;");
+                            document.body.appendChild(_img);
+                            
+                        }
+                    });
+                &lt;/script&gt;     
+                </code></pre>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
