@@ -87,25 +87,33 @@
                             var _visitor = _klyGetCookie("visitor_id") ? _klyGetCookie("visitor_id") : "";
                             // get nielsen tracker id
                             var _nielsen = (parseInt(_klyGetCookie("KLY_Nielsen"))) ? parseInt(_klyGetCookie("KLY_Nielsen")) : "";
+                            // get nielsen tracker count
+                            var _nielsen_tracker_count = parseInt(_klyGetCookie("KLY_NTC")) ? parseInt(_klyGetCookie("KLY_NTC")) : 0;
         
-                            //checking nielsen tracker value
-                            if (_nielsen) {
-                                // update cookie 
-                                _klySetCookie("KLY_Nielsen", _nielsen, _COOKIE_LIFE_TIME);
-                                //inject tracker pixel
-                                _klyCreateNielsenTracker(_nielsen, _visitor);
-                                console.log('added tracker 1');
+                            if( _visitor !== false && _nielsen_tracker_count >= 3 ){
+                                //checking nielsen tracker value
+                                if (_nielsen) {
+                                    // update cookie 
+                                    _klySetCookie("KLY_Nielsen", _nielsen, _COOKIE_LIFE_TIME);
+                                    //inject tracker pixel
+                                    _klyCreateNielsenTracker(_nielsen, _visitor);
+                                    console.log('added tracker 1');
         
-                            } else {
+                                } else {
         
-                                // get random nilesen tracker
-                                var new_nielsen = _KLY_NIELSEN_TRACKER[Math.floor(Math.random() * 100) + 1];
-                                //create cookie
-                                _klySetCookie("KLY_Nielsen", new_nielsen, _COOKIE_LIFE_TIME);
-                                //inject tracker pixel
-                                _klyCreateNielsenTracker(new_nielsen, _visitor);
-                                console.log('added tracker 2');
+                                    // get random nilesen tracker
+                                    var new_nielsen = _KLY_NIELSEN_TRACKER[Math.floor(Math.random() * 100) + 1];
+                                    //create cookie
+                                    _klySetCookie("KLY_Nielsen", new_nielsen, _COOKIE_LIFE_TIME);
+                                    //inject tracker pixel
+                                    _klyCreateNielsenTracker(new_nielsen, _visitor);
+                                    console.log('added tracker 2');
+                                }
+                            }else{
+                                _nielsen_tracker_count++;
+                                _klySetCookie("KLY_NTC", _nielsen_tracker_count, 1);
                             }
+                            
                         }
         
                         function _klyGetCookie(e) {
