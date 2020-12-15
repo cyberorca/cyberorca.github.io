@@ -48,29 +48,28 @@
                         !!-- LETAKAN SEBELUM SCRIPT GOOGLE TAG MANAGER --!!
 
                         &lt;script&gt;
-                        var _globalVar = {
-                            "timeStart": null,
-                            "timeEnd": null,
-                        }
-                    
-                        function _getDateTimeNow() {
-                            var today = new Date();
-                            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                            var time = {
-                                "date": date,
-                                "milisecond": today.getTime()
+                            var _globalVar = {
+                                "timeStart": null,
+                                "timeEnd": null,
                             }
-                            return time;
-                        }
-                
-                        function _callConsoleTime(status, time) {
-                            console.log("%c GPT TIME " + status + " " + time, "color:#cad315; font-size:20px; font-weight: bold; -webkit-text-stroke: 1px black;");
-                        }
+                        
+                            function _getDateTimeNow() {
+                                var today = new Date();
+                                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                var time = {
+                                    "date": date,
+                                    "milisecond": today.getTime()
+                                }
+                                return time;
+                            }
                     
-                        var _timeStart = _getDateTimeNow().date;
-                        _globalVar.timeStart = _getDateTimeNow().milisecond;
-                        _callConsoleTime("GPT LOADTIME START AT", _timeStart);
-
+                            function _callConsoleTime(status, time) {
+                                console.log("%c GPT TIME " + status + " " + time, "color:#cad315; font-size:20px; font-weight: bold; -webkit-text-stroke: 1px black;");
+                            }
+                        
+                            var _timeStart = _getDateTimeNow().date;
+                            _globalVar.timeStart = _getDateTimeNow().milisecond;
+                            _callConsoleTime("GPT LOADTIME START AT", _timeStart);
                         &lt;/script&gt;
 
                         !!-- LETAKAN SETELAH SCRIPT FREEZE TOP FRAME --!!
