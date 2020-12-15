@@ -944,12 +944,29 @@ window.createDMPTracker = function(adsList, dfpTracker) {
                 dmpEl.setAttribute('id', 'dmp-tracker-' + dmpId);
                 console.log(dmpEl);
                 parent.window.document.body.appendChild(dmpEl);
+                window.createCDPTracker(cat,'','click');
                 dmpId++;
             }
         });
     });
     parent.window.open(dfpTracker, '_blank');
 };
+
+window.createCDPTracker = function(cat, liName, eName){
+    var cName ='liputan6_id_visitor_id=',
+        cVisitorId = document.cookie.split(';').find(v=>{ return v.match(cName);}),
+        partnerUID = cVisitorId ? decodeURIComponent(cVisitorId).trim().replace(cName,'') : 0,
+        cdpData = {
+                    action: 'ads_click',
+                    action_category: cat,
+                    action_details: {
+                        ads_campaign: liName, 
+                        event_name: eName,
+                    }
+                };
+    window.VidioPersonalization.sendData(partnerUID, cdpData);
+};
+
 
 GAMLibrary.generateViewabilityTracker();
 
