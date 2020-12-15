@@ -1,0 +1,625 @@
+.navbar-menu .nav>li .icon.sign-out {
+    background-position: -168px 0px;
+}
+
+#planetnotif {
+    color: #FFFFFF;
+    background-color: #35B4EB;
+    padding: 5px;
+    width: auto;
+    display: inline-block;
+    font-size: 13px;
+    position: relative;
+    /*
+	right: 0px;
+*/
+    left: 0px;
+    top: 7px;
+    border-radius: 2px !important;
+}
+
+#planetnotif img {
+    position: absolute;
+    top: -7px;
+    /*
+	right: 218px;	
+*/
+    left: 4.5em;
+    width: 11px;
+    height: 9px;
+}
+
+.navbar-menu .nav>li.active .notice-e {
+    min-width: 230px;
+    right: 110px;
+}
+
+.navbar-menu .nav>li.active .notice.notice-e:after {
+    right: 50%;
+    margin-right: -6px;
+}
+
+
+/*pop up modal report*/
+
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modalDialog>div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    background: #fff;
+    /*border-radius:5px;*/
+}
+
+.modalDialog>div .iModalHeader {
+    width: 100%;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid #E74C3C;
+    background: #E74C3C;
+    /*border-radius:5px 5px 0px 0px;*/
+}
+
+.modalDialog>div .iModalHeader h2 {
+    padding-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.modalDialog>div .iModalContent {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0px 0px 5px 0px;
+}
+
+.modalDialog>div .iModalFooter {
+    padding: 5px 5px;
+    border-top: 1px solid #BFBFBF;
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.close {
+    color: #000000 !important;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.close:hover {
+    text-decoration: none;
+}
+
+.roption ul li input {
+    -webkit-appearance: radio !important;
+}
+
+.close {
+    color: #000000 !important;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.close:hover {
+    text-decoration: none;
+}
+
+.roption ul li {
+    list-style: none;
+}
+
+.roption ul li input {
+    -webkit-appearance: radio !important;
+}
+
+.btn {
+    background: #E74C3C;
+    border: #E74C3C solid 1px;
+    color: #fff !important;
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 15px;
+    text-decoration: none;
+    text-align: center;
+    /*min-width: 60px;*/
+    position: relative;
+    transition: color .1s ease;
+}
+
+
+/*end pop up modal report*/
+
+.body-paragraph {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/*.detail-artikel, .article-block{
+	max-width: 640px;
+}
+
+@media(max-width:991px){
+	.detail-artikel{
+		max-width: 100%;
+		padding:0;
+		display:block;
+	}	
+}*/
+
+a.article-left img.small {
+    max-width: 200px;
+}
+
+@media(min-width: 768px) {
+    a.article-left img.large {
+        max-width: 300px;
+    }
+}
+
+@media(min-width: 769px) {
+    .mkl-share16 .list-share16>li .wa-share,
+    .mkl-share16 .list-share16>li .bbm-share {
+        display: none;
+    }
+}
+
+
+/*add css setelah implementasi banner*/
+
+
+/*section-merdeka*/
+
+.section-merdeka *,
+.section-merdeka *:after,
+.section-merdeka *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.section-merdeka {
+    max-width: 996px;
+    margin: 0 auto;
+    background: #fff;
+    color: #000;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+@media(min-width: 1111px) {
+    .group-header {
+        padding-left: 44px;
+    }
+    .navbar-menu .navbar-collapse {
+        padding: 0;
+        margin-left: 44px;
+    }
+    .navbar-brand {
+        padding-left: 10px;
+    }
+}
+
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    white-space: normal;
+}
+
+
+/*hide ads*/
+
+@media(max-width: 1023px) {
+    #div-gpt-ad-merdeka-billboard-oop {
+        display: none;
+    }
+}
+
+
+/*end hide ads*/
+
+.container {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    .container {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
+
+@media(max-width:995px) {
+    .navbar-merdeka {
+        margin: 0px -10px;
+    }
+    .navbar-merdeka {
+        margin-bottom: 10px;
+    }
+}
+
+@media(max-width: 767px) {
+    .navbar-menu .nav>li.active .notice-e {
+        right: 51px;
+    }
+}
+
+.section-content {
+    margin: 0px;
+}
+
+.mdk-footer {
+    background: #fff;
+}
+
+.iModalContent .roption,
+.iModalContent .ranswer {
+    font-size: 16px;
+}
+
+.iModalContent .roption ul li,
+.iModalContent .ranswer p {
+    margin-left: 10px;
+}
+
+@media (max-width: 991px) {
+    .detail-img {
+        margin: 0 -10px;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .group-header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+
+/*end add css setelah implementasi banner*/
+
+
+/*.videoWrapper{
+	padding-bottom: unset !important;
+	height: auto;
+}
+
+.videoWrapper iframe{
+	position: unset !important;
+}*/
+
+.twitterWrapper {
+    margin-top: 40px;
+}
+
+.title__videoWrapper {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.body-item__break {
+    position: relative;
+    margin: 30px 0px;
+}
+
+.body-item__break:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    background-color: #eee;
+    z-index: 0;
+}
+
+.body-item__break>small {
+    position: relative;
+    z-index: 2;
+    display: table;
+    background-color: #fff;
+    padding: 0 30px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: normal;
+}
+
+.body--item {
+    margin-bottom: 30px;
+}
+
+.body--item>h3 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.8em;
+}
+
+.body-item__next {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.body-item__next .next-btn,
+.body-item__next .selangkapnya-btn {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #f64440;
+    color: #f64440;
+    font-size: 14px;
+    display: block;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: 3px 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.body-item__next .next-btn:hover,
+.body-item__next .selangkapnya-btn:hover {
+    background-color: #f64440;
+    color: #fff;
+}
+
+.body-item__next .selangkapnya-btn {
+    max-width: 175px !important;
+}
+
+#infscr-loading {
+    display: none !important;
+}
+
+x:-o-prefocus,
+.body-item__next .next-loader {
+    display: none;
+}
+
+.body--item .vidio-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    margin: 20px -5px;
+    margin-bottom: 30px;
+}
+
+.body--item .vidio-embed>iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.instagram-media {
+    min-width: calc(100% - 2px) !important;
+}
+
+.disclaimer-comment {
+    background-color: #fffaf9;
+    border-radius: 4px;
+    border: solid 1px #cf302b;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.disclaimer-comment p {
+    font-family: 'Noto Sans';
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #777777;
+}
+
+html.lock,
+html.lock body {
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.banner-sc {
+    margin-top: 30px;
+}
+
+.body-break {
+    position: relative;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.body-paging h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.body-paging p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.body-progress {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    z-index: 999999;
+}
+
+.body-progress-spinner {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);*/
+}
+
+.body-progress-spinner-inner {
+    /*border: 4px solid #ececec; */
+    /* border-radius: 50%; */
+    width: 40px;
+    height: 40px;
+    /* border-top-color: red; */
+    /* animation: 1s spin infinite ease-in-out;*/
+    background: url('https://cdns.klimg.com/merdeka.com/media/i/a/planet/World_Globe.gif');
+    background-size: contain;
+}
+
+.body-progress-infinite {
+    position: relative;
+    background-color: #ececec;
+    width: 100%;
+    height: 5px;
+}
+
+.body-progress-infinite-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0px;
+    background-color: red;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media(min-width: 768px) {
+    html.lock body {
+        padding-right: 17px
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .article-inline>li .display-block img {
+        width: 100%;
+        float: none;
+    }
+    .article-inline>li a p {
+        font-size: 18px;
+        line-height: 1.4em;
+        color: #000;
+        margin-top: 10px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        text-align: center;
+    }
+}
