@@ -964,7 +964,8 @@ window.createCDPTracker = function(cat, liName, eName){
                         event_name: eName,
                     }
                 };
-    console.log("DATA : ",cdpData)
+    console.log("%c DATA CDP : " + cdpData + " | PARTNER USER ID : " + partnerUID, "color:#cad315; font-size:20px; font-weight: bold; -webkit-text-stroke: 1px black;");
+        
     window.VidioPersonalization.sendData(partnerUID, cdpData);
 };
 
