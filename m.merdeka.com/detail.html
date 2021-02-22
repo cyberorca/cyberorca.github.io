@@ -792,7 +792,15 @@ String.prototype.klyFiltering = function(delimiter) {
 };
 
 var isReadPage = kly.pageType === "ReadPage";
-
+if(isReadPage){
+    document.addEventListener('readystatechange', function() {
+            if(document.readyState === "interactive"){
+            _styleUnfreeze = document.createElement('style');
+            _styleUnfreeze.id = "unfreezeFirsLoad";
+            _styleUnfreeze.innerText = 'body,html {position: unset!important;width: unset!important;height: unset!important}';
+            document.body.appendChild(_styleUnfreeze);
+    }});
+}
 window.GAMLibrary = {};
 window.GAMLibrary = {
     dfpSlideup: '/36504930/m.merdeka.com/dfp-slideup',
@@ -1057,10 +1065,7 @@ googletag.cmd.push(function() {
         //     document.querySelector("#dfp-spinads") && document.querySelector("#dfp-spinads").parentElement.remove();
         //     googletag.pubads().refresh([_bottomFrm]);
         // }, 60000);
-        _styleUnfreeze = document.createElement('style');
-        _styleUnfreeze.id = "unfreezeFirsLoad";
-        _styleUnfreeze.innerText = 'body,html {position: unset!important;width: unset!important;height: unset!important}';
-        document.body.appendChild(_styleUnfreeze);
+
     }
     console.log("window : ", window);
     /*Bottom Frame Scrolling*/
