@@ -1057,9 +1057,10 @@ googletag.cmd.push(function() {
         //     document.querySelector("#dfp-spinads") && document.querySelector("#dfp-spinads").parentElement.remove();
         //     googletag.pubads().refresh([_bottomFrm]);
         // }, 60000);
-        _style = document.createElement('style');
-        _style.innerText = 'body,html {position: unset!important;width: unset!important;height: unset!important}';
-        document.body.appendChild(_style);
+        _styleUnfreeze = document.createElement('style');
+        _styleUnfreeze.id = "unfreezeFirsLoad";
+        _styleUnfreeze.innerText = 'body,html {position: unset!important;width: unset!important;height: unset!important}';
+        document.body.appendChild(_styleUnfreeze);
     }
     console.log("window : ", window);
     /*Bottom Frame Scrolling*/
