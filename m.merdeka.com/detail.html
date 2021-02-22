@@ -244,7 +244,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 gamFreeze3s : null,
                 gamMsgStatus : 0,
                 gamTFCookies : 'initTopFrame',
-                gamUnFreezeStyle : 'body,html {position: unset!important;width: unset!important;height: unset!important}',
+                gamUnFreezeStyle : 'body,html {position: unset!important;}',
                 gamFreezeStyle : '',//'body,html {position: fixed;width: 100%;height: 100%}',
                 gamMsg : function(msg){
                     this.gamMsgStatus ? console.log('%c Product Test : '+msg,'color:#ecd528; font-size:18px; font-weight: bold; -webkit-text-stroke: 1px #801136;') : '';
@@ -1089,13 +1089,13 @@ googletag.cmd.push(function() {
                 let deviceOrientation = window.matchMedia("(orientation: portrait)");
                 let that = GAMLibrary.lockScroll;
                 if (!deviceOrientation.matches) {
-                    GAMLibrary.lockScroll.unset();
+                    !isReadPage ? GAMLibrary.lockScroll.unset() : '';
                 } else {
-                    GAMLibrary.lockScroll.set();
+                    !isReadPage ? GAMLibrary.lockScroll.set() : '';
                 }
                 window.addEventListener("resize", function() {
                     if (!deviceOrientation.matches) {
-                        that.unset();
+                        !isReadPage ? that.unset() : '';
                     }
                 });
             }
@@ -1106,7 +1106,7 @@ googletag.cmd.push(function() {
         } else {
             /* START - TOPFRAME FREEZE - 30 june 2020 */
             if (dfp_slotAdUnitPath == GAMLibrary.dfpTopframe) {
-                GAMLibrary.lockScroll.unset();
+                !isReadPage ? GAMLibrary.lockScroll.unset() : '';
             }
             /* END - TOPFRAME FREEZE - 30 june 2020 */
 
