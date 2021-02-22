@@ -1057,10 +1057,12 @@ googletag.cmd.push(function() {
         //     document.querySelector("#dfp-spinads") && document.querySelector("#dfp-spinads").parentElement.remove();
         //     googletag.pubads().refresh([_bottomFrm]);
         // }, 60000);
+        _style = document.createElement('style');
+        _style.innerText = 'body,html {position: unset!important;width: unset!important;height: unset!important}';
+        document.body.appendChild(_style);
     }
     console.log("window : ", window);
     /*Bottom Frame Scrolling*/
-    isReadPage ? window.gamInitTopFrame.gamTFunfreeze() : '';
     GAMLibrary.scrollBottomFrame();
     /*Bottom Frame Scrolling*/
     var _countAdUnit = 0,
