@@ -1961,7 +1961,7 @@
     <script>
         var category_page = "Homepage";
 
-        $(function() {
+        // $(function() {
             String.prototype.klyFiltering = function(delimiter) {
                 return this.trim().split(delimiter).map(function(t) {
                     return t.trim().toLowerCase()
@@ -2012,7 +2012,7 @@
                 googletag.enableServices();
 
             });
-        });
+        // });
 
         googletag.cmd.push(function() {
             googletag.display('dfp-gpt-ad-mobile-sled');
