@@ -176,16 +176,7 @@
                 googletag.pubads().setTargeting("currentUrl", 'https://www.staging.brilio.net');
                 googletag.pubads().setTargeting("channel", 'Homepage');
 
-                /*<!-- Criteo Section BEGIN -->*/
-                Criteo.events.push(function() {
-                    Criteo.RequestBidsOnGoogleTagSlots(
-                        7539, // Use the id provided by your Criteo representative.
-                        function() {
-                            Criteo.SetDFPKeyValueTargeting();
-                            // googletag.pubads().refresh();
-                        }, 2000);
-                });
-                /*<!-- Criteo Section END -->*/
+
 
                 // googletag.pubads().disableInitialLoad();
                 googletag.pubads().enableSingleRequest();
