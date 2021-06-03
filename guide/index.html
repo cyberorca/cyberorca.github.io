@@ -28,20 +28,33 @@
                 t.selectNodeContents(this), e.removeAllRanges(), e.addRange(t)
             }, !1);
         
-            var optionsCopas = {
-                contentSelector: ".active",
-                loadDelay:0,
-                copyIconClass: "code-badge-copy-icon",
-                checkIconClass: "code-badge-check-icon",
-                onBeforeTextCopied: function(text, codeElement) {
-                    return text;   
-                }
-            };
-            window.highlightJsBadge(optionsCopas);
+            // var optionsCopas = {
+            //     contentSelector: ".active",
+            //     loadDelay:0,
+            //     copyIconClass: "code-badge-copy-icon",
+            //     checkIconClass: "code-badge-check-icon",
+            //     onBeforeTextCopied: function(text, codeElement) {
+            //         return text;   
+            //     }
+            // };
+            // window.highlightJsBadge(optionsCopas);
             
         });   
         
         //]]>
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    var target = $(e.target).attr("href"); // activated tab
+                    var optionsCopas = {
+                        contentSelector: "${target}",
+                        loadDelay:0,
+                        copyIconClass: "code-badge-copy-icon",
+                        checkIconClass: "code-badge-check-icon",
+                        onBeforeTextCopied: function(text, codeElement) {
+                            return text;   
+                        }
+                    };
+                    window.highlightJsBadge(optionsCopas);
+        });
         </script>
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
