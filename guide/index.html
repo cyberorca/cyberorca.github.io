@@ -45,7 +45,7 @@
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                     var target = $(e.target).attr("href"); // activated tab
                     var optionsCopas = {
-                        contentSelector: "${target}",
+                        contentSelector: target,
                         loadDelay:0,
                         copyIconClass: "code-badge-copy-icon",
                         checkIconClass: "code-badge-check-icon",
