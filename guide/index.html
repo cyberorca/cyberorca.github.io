@@ -28,24 +28,8 @@
                 t.selectNodeContents(this), e.removeAllRanges(), e.addRange(t)
             }, !1);
         
-            var optionsHead = {
-                contentSelector: ".head-posts",
-                loadDelay:0,
-                copyIconClass: "code-badge-copy-icon",
-                checkIconClass: "code-badge-check-icon",
-                onBeforeTextCopied: function(text, codeElement) {
-                    return text;   
-                }
-            },optionsShowcase = {
-                contentSelector: ".showcase-posts",
-                loadDelay:0,
-                copyIconClass: "code-badge-copy-icon",
-                checkIconClass: "code-badge-check-icon",
-                onBeforeTextCopied: function(text, codeElement) {
-                    return text;   
-                }
-            },optionsExposer = {
-                contentSelector: ".exposer-posts",
+            var optionsCopas = {
+                contentSelector: ".copas",
                 loadDelay:0,
                 copyIconClass: "code-badge-copy-icon",
                 checkIconClass: "code-badge-check-icon",
@@ -53,9 +37,7 @@
                     return text;   
                 }
             };
-            window.highlightJsBadge(optionsHead);
-            window.highlightJsBadge(optionsShowcase);
-            window.highlightJsBadge(optionsExposer);
+            window.highlightJsBadge(optionsCopas);
             
         });   
         
@@ -103,7 +85,7 @@
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active head-posts" id="head" role="tabpanel" aria-labelledby="head-tab">
+    <div class="tab-pane fade show active copas" id="head" role="tabpanel" aria-labelledby="head-tab">
             <pre><code class="xml">
             &lt;script async src=&quot;//adserver.kl-youniverse.com/asyncjs.php&quot;>&lt;/script&gt;
             &lt;!-- BROWSI LOADER --&gt;
@@ -113,7 +95,7 @@
             &lt;script async src=&quot;//cdns.klimg.com/d.kapanlaginetwork.com/banner/asset/prebid/loader.js&quot;&gt;&lt;/script&gt;
             </code></pre>
     </div>
-    <div class="tab-pane fade showcase-posts" id="showcase" role="tabpanel" aria-labelledby="showcase-tab">
+    <div class="tab-pane fade copas" id="showcase" role="tabpanel" aria-labelledby="showcase-tab">
             <pre><code class="xml">
                 &lt;!--DFP SHOWCASE CODE--&gt;
                 &lt;div id=&#39;div-gpt-ad-merdeka-sc&#39; style=&quot;text-align: center; width:300px; margin: 30px auto;&quot;&gt;
@@ -131,7 +113,7 @@
                 &lt;!--END DFP SHOWCASE CODE--&gt;     
             </code></pre>        
     </div>
-    <div class="tab-pane fade exposer-posts" id="exposer" role="tabpanel" aria-labelledby="exposer-tab">
+    <div class="tab-pane fade copas" id="exposer" role="tabpanel" aria-labelledby="exposer-tab">
         <pre><code class="xml">
             &lt;!--DFP EXPOSER 1 CODE--&gt;
             &lt;div id=&#39;div-gpt-ad-merdeka-dfp-exposer-slot1-oop&#39;&gt;
