@@ -1,7 +1,0 @@
-  1.  selain dengan keterangan "SEDANG DIPROSES" atau mengandung kata "sedang diproses" adalah transaksi berhasil
-  2. "00" dengan keterangan "SEDANG DIPROSES" & "PENDING" adalah transaksi pending
-  3. "" (Tanpa isi) adalah transaksi pending
-  4. "35" adalah transaksi pending
-  5. "68" adalah transaksi pending
-
-  ["00","","35","68"]

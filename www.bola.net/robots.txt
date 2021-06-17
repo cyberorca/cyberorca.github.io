@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /api/
-Disallow: /xml/
-
-Sitemap: https://www.bola.net/sitemap.xml

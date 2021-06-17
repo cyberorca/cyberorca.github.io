@@ -1,0 +1,679 @@
+function SpotXPrebidRegular(bid) {
+    const videoDiv = "div-gpt-ad-flying_carpet_mobile";
+    const playerWidth = 300;
+    const playerHeight = 169;
+    window.console.log("[SPOTX][renderer] Handle SpotX custom outstream renderer");
+    let script = window.document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "//cdn.spotxcdn.com/website/integration_test/media/asia/EASIv2.js";
+    script.setAttribute("data-spotx_channel_id", "" + bid.channel_id);
+    script.setAttribute("data-spotx_vast_url", "" + bid.vastUrl);
+    script.setAttribute("data-spotx_content_width", playerWidth);
+    script.setAttribute("data-spotx_content_height", playerHeight);
+    script.setAttribute("data-spotx_content_page_url", bid.renderer.config.content_page_url);
+    if (bid.renderer.config.ad_mute) {
+        script.setAttribute("data-spotx_ad_mute", "0");
+    }
+    script.setAttribute("data-spotx_ad_unit", "incontent");
+    script.setAttribute("data-spotx_autoplay", "1");
+    script.setAttribute("data-spotx_continue_out_of_view", "1");
+    if (bid.renderer.config.inIframe && window.document.getElementById(bid.renderer.config.inIframe).nodeName == "IFRAME") {
+        let rawframe = window.document.getElementById(bid.renderer.config.inIframe);
+        let framedoc = rawframe.contentDocument;
+        if (!framedoc && rawframe.contentWindow) {
+            framedoc = rawframe.contentWindow.document;
+        }
+        framedoc.body.appendChild(script);
+    } else {
+        window.document.getElementById(videoDiv).appendChild(script);
+    }
+}
+var PREBID_TIMEOUT = 1500;
+var FAILSAFE_TIMEOUT = 3000;
+var HB_TIMEOUT = 1000;
+var adUnits = [{
+    code: "div-gpt-ad-Zone_1",
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [320, 50],
+                [320, 100],
+                [300, 100],
+            ],
+        },
+    },
+    bids: [{
+        bidder: "appier",
+        params: {
+            hzid: "WUCiHFOp"
+        }
+    }, {
+        bidder: "appier",
+        params: {
+            hzid: "WUCim9Op"
+        }
+    }, {
+        bidder: "pubmatic",
+        params: {
+            publisherId: "156479",
+            adSlot: "Home_320x50_1@320x50"
+        }
+    }, {
+        bidder: "pubmatic",
+        params: {
+            publisherId: "156479",
+            adSlot: "Home_320x100@320x100"
+        }
+    }, {
+        bidder: "criteo",
+        params: {
+            networkId: 4168
+        }
+    }, {
+        bidder: "criteorn",
+        params: {
+            networkId: "4363"
+        }
+    }, {
+        bidder: "openx",
+        params: {
+            unit: "540782272",
+            delDomain: "kompascybermedia-d.openx.net"
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [320, 50]
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [320, 100]
+        }
+    }, {
+        bidder: "pxyz",
+        params: {
+            placementId: 19039804
+        }
+    }, {
+        bidder: "triplelift",
+        params: {
+            inventoryCode: "kg_kompas_mobile_article_lb"
+        }
+    }, {
+        bidder: "smartadserver",
+        params: {
+            networkId: "3727",
+            siteId: "363579",
+            pageId: "1293725",
+            formatId: "93796",
+            domain: "https://prg8.smartadserver.com"
+        }
+    }, {
+        bidder: "smartadserver",
+        params: {
+            networkId: "3727",
+            siteId: "363579",
+            pageId: "1293725",
+            formatId: "93798",
+            domain: "https://prg8.smartadserver.com"
+        }
+    }, ],
+}, {
+    code: "div-gpt-ad-Horizontal_Ad",
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [320, 50]
+            ]
+        }
+    },
+    bids: [{
+        bidder: "appier",
+        params: {
+            hzid: "WUCim9Op"
+        }
+    }, {
+        bidder: "pubmatic",
+        params: {
+            publisherId: "156479",
+            adSlot: "Home_320x50_2@320x50"
+        }
+    }, {
+        bidder: "criteo",
+        params: {
+            networkId: 4168
+        }
+    }, {
+        bidder: "criteorn",
+        params: {
+            networkId: "4363"
+        }
+    }, {
+        bidder: "openx",
+        params: {
+            unit: "540782272",
+            delDomain: "kompascybermedia-d.openx.net"
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [320, 50]
+        }
+    }, {
+        bidder: "smartadserver",
+        params: {
+            networkId: "3727",
+            siteId: "363579",
+            pageId: "1293725",
+            formatId: "93796",
+            domain: "https://prg8.smartadserver.com"
+        }
+    }, ],
+}, {
+    code: "div-gpt-ad-flying_carpet_mobile",
+    mediaTypes: {
+        video: {
+            context: "outstream",
+            playerSize: [300, 250]
+        }
+    },
+    bids: [{
+        bidder: "spotx",
+        params: {
+            channel_id: 280686,
+            ad_unit: "outstream",
+            outstream_options: {
+                slot: "div-gpt-ad-flying_carpet_mobile",
+                custom_override: {
+                    channel_id: "280686",
+                    content_width: 320,
+                    content_height: 180,
+                    autoplay: 1,
+                    ad_volume: 0,
+                    ad_unit: "incontent",
+                    sticky: 1,
+                    sticky_y_position: "top",
+                    ad_skippable: 1,
+                    ad_skip_delay: 5,
+                    sticky_y_offset: 150,
+                },
+            },
+        },
+    }, {
+        bidder: "spotx",
+        params: {
+            channel_id: 282227,
+            ad_unit: "outstream",
+            outstream_options: {
+                slot: "div-gpt-ad-flying_carpet_mobile",
+                custom_override: {
+                    channel_id: "282227",
+                    content_width: 320,
+                    content_height: 180,
+                    autoplay: 1,
+                    ad_volume: 0,
+                    ad_unit: "incontent",
+                    sticky: 1,
+                    sticky_y_position: "top",
+                    ad_skippable: 1,
+                    ad_skip_delay: 11,
+                    sticky_y_offset: 150,
+                },
+            },
+        },
+    }, {
+        bidder: "spotx",
+        params: {
+            channel_id: 282234,
+            ad_unit: "outstream",
+            outstream_options: {
+                slot: "div-gpt-ad-flying_carpet_mobile",
+                custom_override: {
+                    channel_id: "282234",
+                    content_width: 320,
+                    content_height: 180,
+                    autoplay: 1,
+                    ad_volume: 0,
+                    ad_unit: "incontent",
+                    sticky: 1,
+                    sticky_y_position: "top",
+                    spotx_sticky_x_position: "left",
+                    ad_skippable: 0,
+                    ad_skip_delay: 15,
+                    sticky_y_offset: 150,
+                    sticky_x_offset: 0,
+                    sticky_width: 175,
+                    sticky_height: 98,
+                },
+            },
+        },
+    }, {
+        bidder: "spotx",
+        params: {
+            channel_id: 300273,
+            ad_unit: "outstream",
+            outstream_options: {
+                slot: "div-gpt-ad-flying_carpet_mobile",
+                custom_override: {
+                    channel_id: "300273",
+                    content_width: 320,
+                    content_height: 568,
+                    autoplay: 1,
+                    ad_volume: 0,
+                    ad_unit: "incontent",
+                    sticky: 1,
+                    sticky_y_position: "top",
+                    spotx_sticky_x_position: "left",
+                    ad_skippable: 0,
+                    ad_skip_delay: 15,
+                    sticky_y_offset: 150,
+                    sticky_x_offset: 3,
+                    sticky_width: 100,
+                    sticky_height: 177,
+                },
+            },
+        },
+    }, {
+        bidder: "spotx",
+        params: {
+            channel_id: 282137,
+            ad_unit: "outstream",
+            outstream_function: SpotXPrebidRegular
+        }
+    }, {
+        bidder: "spotx",
+        params: {
+            channel_id: 301966,
+            ad_unit: "outstream",
+            outstream_function: function spotxOutstreamFuncFS(bid) {
+                setTimeout(function() {
+                    var playerWidth = 220,
+                        playerHeight = 129,
+                        playerOffset = 100,
+                        playerDelay = 5;
+                    const videoDiv = bid.adUnitCode;
+                    window.console.log("[SPOTX][renderer] Handle SpotX custom outstream renderer");
+                    let script = window.document.createElement("script");
+                    script.type = "text/javascript", script.src = "//cdn.spotxcdn.com/website/integration_test/media/asia/EASIv2.js", script.setAttribute("data-spotx_channel_id", "" + bid.channel_id), script.setAttribute("data-spotx_vast_url", "" + bid.vastUrl), script.setAttribute("data-spotx_content_width", playerWidth), script.setAttribute("data-spotx_content_height", playerHeight), script.setAttribute("data-spotx_content_page_url", bid.renderer.config.content_page_url);
+                    var spotx_slot = window.document.querySelector("body"),
+                        s_div = window.document.createElement("div"),
+                        s_style = "width:" + playerWidth + "px; !important; height:" + playerHeight + "px; !important;z-index:99999999999;position: fixed;bottom:" + playerOffset + "px;left: 0;";
+                    s_div.style.cssText = s_style, s_div.setAttribute("id", "s_vid_contain"), script.setAttribute("data-spotx_ad_unit", "incontent"), script.setAttribute("data-spotx_autoplay", "1"), script.setAttribute("data-spotx_continue_out_of_view", "1"), script.setAttribute("data-spotx_ad_skippable", 1), script.setAttribute("data-spotx_ad_skip_delay", playerDelay), spotx_slot.appendChild(s_div), s_div.appendChild(script);
+                }, 4000);
+            },
+        },
+    }, {
+        bidder: "spotx",
+        params: {
+            channel_id: 301967,
+            ad_unit: "outstream",
+            outstream_function: function spotxOutstreamFuncFS(bid) {
+                setTimeout(function() {
+                    var playerWidth = 220,
+                        playerHeight = 129,
+                        playerOffset = 100,
+                        playerDelay = 12;
+                    const videoDiv = bid.adUnitCode;
+                    window.console.log("[SPOTX][renderer] Handle SpotX custom outstream renderer");
+                    let script = window.document.createElement("script");
+                    script.type = "text/javascript", script.src = "//cdn.spotxcdn.com/website/integration_test/media/asia/EASIv2.js", script.setAttribute("data-spotx_channel_id", "" + bid.channel_id), script.setAttribute("data-spotx_vast_url", "" + bid.vastUrl), script.setAttribute("data-spotx_content_width", playerWidth), script.setAttribute("data-spotx_content_height", playerHeight), script.setAttribute("data-spotx_content_page_url", bid.renderer.config.content_page_url);
+                    var spotx_slot = window.document.querySelector("body"),
+                        s_div = window.document.createElement("div"),
+                        s_style = "width:" + playerWidth + "px; !important; height:" + playerHeight + "px; !important;z-index:99999999999;position: fixed;bottom:" + playerOffset + "px;left: 0;";
+                    s_div.style.cssText = s_style, s_div.setAttribute("id", "s_vid_contain"), script.setAttribute("data-spotx_ad_unit", "incontent"), script.setAttribute("data-spotx_autoplay", "1"), script.setAttribute("data-spotx_continue_out_of_view", "1"), script.setAttribute("data-spotx_ad_skippable", "0"), script.setAttribute("data-spotx_ad_skip_delay", playerDelay), spotx_slot.appendChild(s_div), s_div.appendChild(script);
+                }, 4000);
+            },
+        },
+    }, {
+        bidder: "teads",
+        params: {
+            placementId: 120285,
+            pageId: 110626
+        }
+    }, ],
+}, {
+    code: "div-gpt-ad-flying_carpet_mobile",
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [300, 250],
+                [300, 600],
+                [320, 480],
+            ],
+        },
+    },
+    bids: [{
+        bidder: "appier",
+        params: {
+            hzid: "WUCimzOp"
+        }
+    }, {
+        bidder: "appier",
+        params: {
+            hzid: "WUCeW9Op"
+        }
+    }, {
+        bidder: "pubmatic",
+        params: {
+            publisherId: "156479",
+            adSlot: "Home_300x250_1@300x250"
+        }
+    }, {
+        bidder: "pubmatic",
+        params: {
+            publisherId: "156479",
+            adSlot: "Home_300x600@300x600"
+        }
+    }, {
+        bidder: "criteo",
+        params: {
+            networkId: 4168
+        }
+    }, {
+        bidder: "criteorn",
+        params: {
+            networkId: "4363"
+        }
+    }, {
+        bidder: "openx",
+        params: {
+            unit: "540782272",
+            delDomain: "kompascybermedia-d.openx.net"
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [300, 250]
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [300, 600]
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [320, 480]
+        }
+    }, {
+        bidder: "pxyz",
+        params: {
+            placementId: 19039804
+        }
+    }, {
+        bidder: "triplelift",
+        params: {
+            inventoryCode: "kg_kompas_mobile_article_mid"
+        }
+    }, {
+        bidder: "smartadserver",
+        params: {
+            networkId: "3727",
+            siteId: "363579",
+            pageId: "1293725",
+            formatId: "93799",
+            domain: "https://prg8.smartadserver.com"
+        }
+    }, {
+        bidder: "smartadserver",
+        params: {
+            networkId: "3727",
+            siteId: "363579",
+            pageId: "1293725",
+            formatId: "93800",
+            domain: "https://prg8.smartadserver.com"
+        }
+    }, ],
+}, {
+    code: "div-gpt-ad-Zone_2",
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [300, 250]
+            ]
+        }
+    },
+    bids: [{
+        bidder: "appier",
+        params: {
+            hzid: "WUCimzOp"
+        }
+    }, {
+        bidder: "pubmatic",
+        params: {
+            publisherId: "156479",
+            adSlot: "Home_300x250_2@300x250"
+        }
+    }, {
+        bidder: "criteo",
+        params: {
+            networkId: 4168
+        }
+    }, {
+        bidder: "criteorn",
+        params: {
+            networkId: "4363"
+        }
+    }, {
+        bidder: "openx",
+        params: {
+            unit: "540782272",
+            delDomain: "kompascybermedia-d.openx.net"
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [300, 250]
+        }
+    }, {
+        bidder: "smartadserver",
+        params: {
+            networkId: "3727",
+            siteId: "363579",
+            pageId: "1293725",
+            formatId: "93800",
+            domain: "https://prg8.smartadserver.com"
+        }
+    }, ],
+}, {
+    code: "div-gpt-ad-643108395629198344-1-overlay",
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [300, 250]
+            ]
+        }
+    },
+    bids: [{
+        bidder: "appier",
+        params: {
+            hzid: "WUCimzOp"
+        }
+    }, {
+        bidder: "criteo",
+        params: {
+            networkId: 4168
+        }
+    }, {
+        bidder: "criteorn",
+        params: {
+            networkId: "4363"
+        }
+    }, {
+        bidder: "openx",
+        params: {
+            unit: "540782272",
+            delDomain: "kompascybermedia-d.openx.net"
+        }
+    }, {
+        bidder: "ix",
+        params: {
+            siteId: 449983,
+            size: [300, 250]
+        }
+    }, {
+        bidder: "smartadserver",
+        params: {
+            networkId: "3727",
+            siteId: "363579",
+            pageId: "1293725",
+            formatId: "93800",
+            domain: "https://prg8.smartadserver.com"
+        }
+    }, ],
+}, ];
+var gptadslots = [];
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+googletag.cmd.push(function() {
+    googletag.pubads().disableInitialLoad();
+});
+var pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+pbjs.que.push(function() {
+    pbjs.aliasBidder("criteo", "criteorn");
+    pbjs.setConfig({
+        enableSendAllBids: true
+    });
+    pbjs.addAdUnits(adUnits);
+    pbjs.requestBids({
+        bidsBackHandler: initAdserver,
+        timeout: PREBID_TIMEOUT
+    });
+});
+
+function initAdserver() {
+    if (pbjs.initAdserverSet) return;
+    pbjs.initAdserverSet = !0;
+    googletag.cmd.push(function() {
+        pbjs.que.push(function() {
+            pbjs.setTargetingForGPTAsync();
+            googletag.pubads().refresh();
+        });
+    });
+}
+setTimeout(function() {
+    initAdserver();
+}, FAILSAFE_TIMEOUT); < /script> <
+script type = "text/javascript" >
+    googletag.cmd.push(function() {
+        googletag.defineSlot('/31800665/KOMPAS.COM_Mobile_Web/home', [
+            [320, 50],
+            [320, 100],
+            [320, 150]
+        ], 'div-gpt-ad-Horizontal_Ad').setTargeting('Pos', ['Horizontal_Ad']).addService(googletag.pubads());
+        googletag.defineSlot('/31800665/KOMPAS.COM_Mobile_Web/home', [
+            [1, 1],
+            [300, 250],
+            [300, 600],
+            [320, 480]
+        ], 'div-gpt-ad-flying_carpet_mobile').setTargeting('Pos', ['flying_carpet_mobile']).addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/31800665/KOMPAS.COM_Mobile_Web/home', 'div-gpt-ad-Terkini').setTargeting('pos', ['Terkini']).addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/31800665/KOMPAS.COM_Mobile_Web/home', 'div-gpt-ad-articlehighlight').setTargeting('pos', ['Article_Highlight']).addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/31800665/KOMPAS.COM_Mobile_Web/home', 'div-gpt-ad-articlehighlight2').setTargeting('pos', ['Article_Highlight_2']).addService(googletag.pubads());
+        googletag.defineSlot('/31800665/KOMPAS.COM_Mobile_Web/home', [
+            [1, 1],
+            [320, 50],
+            [320, 100]
+        ], 'div-gpt-ad-Zone_1').setTargeting('Pos', ['Zone_1']).addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/31800665/KOMPAS.COM_Mobile_Web/home', 'div-gpt-ad-643108395629198344-oop').setTargeting('Pos', ['Overlay']).addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/31800665/KOMPAS.COM_Mobile_Web/home', 'div-gpt-ad-643108395629198345-rollup').setTargeting('Pos', ['Rollup']).addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/31800665/KOMPAS.COM_Mobile_Web/home', 'div-gpt-ad-643108395629198344-oopnonchrome').setTargeting('Pos', ['Overlay_NonChrome']).addService(googletag.pubads());
+        googletag.defineSlot('/31800665/KOMPAS.COM_Mobile_Web/home', [300, 250], 'div-gpt-ad-Zone_2').setTargeting('Pos', ['Zone_2']).addService(googletag.pubads());
+        document.addEventListener("DOMContentLoaded", function(event) {
+
+            var cekclassread = document.getElementsByClassName("read__content")[0];
+            if (cekclassread != undefined) {
+                var content = document.getElementsByClassName("read__content")[0].innerText;
+
+                var gpt_safe = content.match(/\b(ak47|al jazeera|al qaeda|allah|Assad|bahan kimia|bencana|boikot|corona|covid-19|fatal|ganti rugi|gejala|gugur|hoax|hukuman|jokowi|kecelakaan|kejadian|keras|komplain|Kondom|kontroversi|korban|kriminal|palsu|pembunuhan|pemerkosaan|penyakit|peristiwa|pidana|polisi|porno|prabowo|racun|rasis|rasisme|seks|tersangka|viral|virus|lockdown|menewaskan|menewaskan orang|mengancam nyawa|meninggal|meninggal dunia|orang mati|orang tewas|pemakaman|petugas penyelamat|telah meninggal|terbunuh|tewas|tewaskan|tim penyelamat|wanita meninggal|autopsi|belasungkawa|bencana|bencana besar|bunuh orang|bunuh diri|darurat bencana|dilaporkan tewas|dimakamkan|dipastikan tewas|ditemukan mati|ditemukan tewas|hilangnya nyawa|identitas korban|inalillahi|jasad korban|jasadnya|jenasah wanita|jenazah|jenazah pria|jenazah teridentifikasi|jasad|kehilangan hidupnya|kehilangan nyawa|kehilangan nyawanya|kematian|korban|korban jiwa|korban meninggal|korban tewas|mati|mayat|mayat korban|membunuh|membunuh istrinya|membunuh mereka|membunuh suaminya|menemui ajal|mengalami koma|menghembuskan nafas terakhir|menimbulkan korban|meninggal akibat sakit|menyebabkan kematian|meregang nyawa|meregggut nyawa|modar|nyawa hilang|nyawa melayang|penyebab kematian|tak bernyawa|tak sadarkan diri|terkapar|tidak bernyawa|tutup usia|wafat|kematian virus|kematian wabah|nyawa melayang|korban terinfeksi|virus menyerang|merenggut nyawa|pelayat|hilangkan nyawa|renggut nyawa|wabah|keadaan kritis|kehilangan darah|merenggut jiwa|telan nyawa|menelan nyawa|memakan nyawa|dinyatakan meninggal|nyawa tak tertolong|penyakit|sakit pernapasan|sesak|korona|corona|odp|pdp|penyakit|virus|rumah sakit|Covid-19|virus korona|positif korona|COVID-19|virus corona|terjangkit COVID-19|terinfeksi virus corona|porno|seks|lesbian|gay|sesama jenis|homoseks|homoseksual|biseksual|transgender|pemerasan|pemeras)\b/i);
+                if (gpt_safe) {
+                    safe = 'no';
+                } else {
+                    safe = 'yes';
+                }
+
+                var keyword1 = content.match(/\b(virus|corona|pneumonia|paru-paru|karantina|demam|wabah|sesak napas|Wuhan|sesak dada|rs darurat|epidemic|pandemic|status darurat|SARS|corona virus|jangkit|covid|batuk|covid-19|MERS|penyebaran|penularan|patogen|CoV|Viruses|Korona|nCOV|isolasi diri|masker|terinfeksi|infeksi|mati|kematian|positif corona|lockdown|orang dalam pemantauan (ODP)|pasien dalam pengawasan (PDP)|suspect|sakit tenggorokan|sampoerna|rungkut|pabrik|factory|porno|seks|lesbian|gay|sesama jenis|homoseks|homoseksual|biseksual|transgender|pemerasan|pemeras)\b/i);
+                if (keyword1) {
+                    keyword_targetting1 = 'yes';
+                } else {
+                    keyword_targetting1 = 'no';
+                }
+
+                var keyword2 = content.match(/\b(cpns)\b/i);
+                if (keyword2) {
+                    keyword_targetting2 = 'yes';
+                } else {
+                    keyword_targetting2 = 'no';
+                }
+
+            } else {
+                safe = 'yes';
+                keyword_targetting1 = 'no';
+                keyword_targetting2 = 'no';
+            }
+
+            console.log('safe_branding =' + safe);
+            googletag.pubads().setTargeting('safe_branding', safe);
+
+            console.log('keyword_targetting1 =' + keyword_targetting1);
+            googletag.pubads().setTargeting('keyword_targetting1', keyword_targetting1);
+
+            console.log('keyword_targetting2 =' + keyword_targetting2);
+            googletag.pubads().setTargeting('keyword_targetting2', keyword_targetting2);
+
+
+            var cekclasstitle = document.getElementsByClassName("read__title")[0];
+            if (cekclasstitle != undefined) {
+                var contenttitle = document.getElementsByClassName("read__title")[0].innerText;
+
+                var keyword1_title = contenttitle.match(/\b(batuk|corona|corona virus|CoV|covid|covid-19|demam|epidemic|Factory|infeksi|isolasi diri|jangkit|karantina|kematian|Korona|lockdown|masker|mati|MERS|nCOV|orang dalam pemantauan (ODP)|Pabrik|pandemic|paru-paru|pasien dalam pengawasan (PDP)|patogen|penularan|penyebaran|pneumonia|positif corona|rs darurat|Rungkut|sakit tenggorokan|Sampoerna|SARS|sesak dada|sesak napas|status darurat|suspect|terinfeksi|virus|Viruses|wabah|Wuhan)\b/i);
+                if (keyword1_title) {
+                    title_targetting_1 = 'yes';
+                } else {
+                    title_targetting_1 = 'no';
+                }
+
+            } else {
+                title_targetting_1 = 'no';
+            }
+
+            console.log('title_targetting_1 =' + title_targetting_1);
+            googletag.pubads().setTargeting('title_targetting_1', title_targetting_1);
+
+
+        });
+
+        try {
+            // Retrieving local storage
+            var ls = window.localStorage;
+
+            var lr = ls.getItem("_jxitr");
+            if (lr && lr.length > 2) {
+                try {
+                    googletag.pubads().setTargeting('jx_audience_interest', JSON.parse(lr).join().split(','));
+                } catch {}
+            }
+
+            var li = ls.getItem("_jxitd");
+            if (li && li.length > 2) {
+                try {
+                    googletag.pubads().setTargeting('jx_audience_intend', JSON.parse(li).join().split(','));
+                } catch {}
+            }
+
+        } catch (e) {
+            //console.log("Localstorage not accessible or any other error: " + e.message);
+        }
+        googletag.pubads().setTargeting('page', 'index');
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });

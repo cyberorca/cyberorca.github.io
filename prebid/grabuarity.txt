@@ -1,0 +1,22 @@
+const priceGranularityConfig = {
+        buckets: [
+          {
+            precision: 2,
+            min: 0.20,
+            max: 2.99,
+            increment: 0.01,
+          },
+          {
+            precision: 2,
+            min: 3.0,
+            max: 5.95,
+            increment: 0.05,
+          },
+          {
+            precision: 2,
+            min: 6.00,
+            max: 20.0,
+            increment: 0.5,
+          },
+        ],
+      };

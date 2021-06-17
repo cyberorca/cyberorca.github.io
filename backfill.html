@@ -1,0 +1,59 @@
+<html><head>
+	<meta http-equiv="content-type" content="text/html">
+	<meta name="author" content="KLN">
+	<title>KLN Backfill for 300x250 ads</title>
+    <script>
+        (function() {
+            var useSSL = 'https:' == document.location.protocol;
+            var dDate = new Date();
+            var nRand = dDate.getFullYear()+""+dDate.getMonth()+""+dDate.getDate()+""+dDate.getHours();//+""+dDate.getMinutes();
+            var sSite = 1;
+            var src = (useSSL ? 'https:' : 'http:') +
+            '//a.merdeka.com/internal-ads/'+nRand+'/'+sSite+'/data.js';
+            document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+            //console.log('call for 300x250 adx backfill');
+        })();
+                
+                
+        function kln_showAds(zone_id)
+        {
+            if (typeof noAdsPage == 'undefined') {
+                noAdsPage = false;
+            }
+            inAds_kln_obj = inAds_kln_json[zone_id];
+            if(typeof inAds_kln_obj == 'object'){
+                var idx = Math.floor((Math.random() * (Object.keys(inAds_kln_obj).length)) + 1);
+                if(Object.keys(inAds_kln_obj).length)
+                {
+                    /*get ads object list*/ 
+                        var dataBanner = inAds_kln_obj;
+                    /*get ads object list IDs*/
+                        var keyArray = Object.keys(dataBanner);
+                    /*check if current page is advertorial pages*/
+                    if(!noAdsPage)
+                    {
+                        /*only deliver regular ads on non advertorial pages*/
+                        /*randomize ads if contain more than one creative*/
+                        var idx = keyArray.sort(function() {return 0.5 - Math.random()});
+                        document.write(dataBanner[idx[0]].replace('http://cdn.klimg.com', 'https://cdns.klimg.com'));
+                    }else{
+                        /*check if there are custom ads for this page, based on the url*/
+                        if (typeof dataBanner[urlPath] != 'undefined') {
+                            document.write(dataBanner[urlPath]);
+                        }
+                    }
+                        
+                }
+            }
+        }
+    </script><script src="https://a.merdeka.com/internal-ads/202092316/1/data.js"></script>
+          
+</head>
+
+<body style="margin:0; padding:0; border: none; overflow: hidden;" marginwidth="0" marginheight="0">
+    <div id="kln-300x250-ads" style="width: 300px; height: 250px; overflow: hidden;">
+        <script type="text/javascript">kln_showAds(4);</script>
+    </div>
+
+
+</body></html>

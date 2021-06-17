@@ -1,9 +1,0 @@
-{
-  "short_name": "Otosia",
-  "name": "Otosia",
-  "gcm_sender_id": "482941778795",
-  "start_url": "/",
-  "theme_color":"#d90738",
-  "background_color": "#ffffff",
-  "display": "standalone"
-}

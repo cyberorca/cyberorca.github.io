@@ -1,0 +1,19 @@
+            googletag.cmd.push(function() {
+				googletag.display('div-gpt-ad-merdeka-sc');
+			});
+			googletag.cmd.push(function() {
+				googletag.display('div-gpt-ad-merdeka-hl');
+			});
+			googletag.cmd.push(function() {
+				googletag.display('div-gpt-ad-merdeka-topfrm-oop');
+			});
+
+			googletag.cmd.push(function() {
+				googletag.display('div-gpt-ad-merdeka-dfp-exposer-slot1-oop');
+			});
+			googletag.cmd.push(function() {
+				googletag.display('div-gpt-ad-merdeka-dfp-exposer-slot2-oop');
+			});
+			googletag.cmd.push(function() {
+				googletag.display('div-gpt-ad-dfp-overlay-oop');
+			});

@@ -397,3 +397,77 @@
 	failed with error code -1100 (File does not exist.)
 
 ---------------------
+
+27/10/20 2.29.32 PM - ERROR: Download of "https://cdns.klimg.com/font/lora/Lora-Regular.ttf",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v259/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 2.29.32 PM - ERROR: Download of "https://cdns.klimg.com/merdeka.com/media/i/a/bg-gradient-overlay-atas-b.png",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v259/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 2.29.32 PM - ERROR: Download of "https://cdns.klimg.com/merdeka.com/media/i/a/search-new.png",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v259/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+
+---------------------
+
+27/10/20 2.32.49 PM - ERROR: Download of "https://cdns.klimg.com/font/lora/Lora-Regular.ttf",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v259/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 2.32.49 PM - ERROR: Download of "https://cdns.klimg.com/merdeka.com/media/i/a/search-new.png",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v259/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 2.32.49 PM - ERROR: Download of "https://cdns.klimg.com/merdeka.com/media/i/a/bg-gradient-overlay-atas-b.png",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v259/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+
+---------------------
+
+27/10/20 2.39.37 PM - ERROR: Download of "https://cdns.klimg.com/font/lora/Lora-Regular.ttf",
+	referenced from "http://cdns.klimg.com/a.merdeka.com/v257/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 2.39.37 PM - ERROR: Download of "https://cdns.klimg.com/merdeka.com/media/i/a/search-new.png",
+	referenced from "http://cdns.klimg.com/a.merdeka.com/v257/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 2.39.37 PM - ERROR: Download of "https://cdns.klimg.com/merdeka.com/media/i/a/bg-gradient-overlay-atas-b.png",
+	referenced from "http://cdns.klimg.com/a.merdeka.com/v257/main-v2-mobileindexv2.css",
+	failed with error code -1100 (File does not exist.)
+
+---------------------
+
+27/10/20 2.43.04 PM - ERROR: Download of "http://getmobileajax/mbreaking-news"
+	failed with error code -1003 (A server with the specified hostname could not be found.)
+
+---------------------
+
+27/10/20 5.58.10 PM - ERROR: Download of "https://cdns.klimg.com/a.merdeka.com/v245/mtag.png",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v245/main-v2-index.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 5.58.16 PM - ERROR: Download of "https://cdns.klimg.com/a.merdeka.com/v245/img/komen.png",
+	referenced from "https://cdns.klimg.com/a.merdeka.com/v245/main-v2-index.css",
+	failed with error code -1100 (File does not exist.)
+
+---------------------
+
+27/10/20 6.02.30 PM - ERROR: Download of "http://cyberorca.github.io.test/cdns.klimg.com/merdeka.com/media/i/a/www/logo-footer.png"
+	failed with error code -1100 (File does not exist.)
+
+---------------------
+
+27/10/20 6.11.57 PM - ERROR: Download of "http://cdns.klimg.com/a.merdeka.com/v259/mtag.png",
+	referenced from "http://cdns.klimg.com/a.merdeka.com/v259/main-v2-index.css",
+	failed with error code -1100 (File does not exist.)
+27/10/20 6.12.04 PM - ERROR: Download of "http://cdns.klimg.com/a.merdeka.com/v259/img/komen.png",
+	referenced from "http://cdns.klimg.com/a.merdeka.com/v259/main-v2-index.css",
+	failed with error code -1100 (File does not exist.)
+
+---------------------
+
+15/12/20 3.39.19 PM - ERROR: Download of "https://cdns.klimg.com/a.merdeka.com/v264/"
+	failed with error code -1100 (File does not exist.)
+
+---------------------
+
+15/12/20 3.44.53 PM - ERROR: Download of "https://cdns.klimg.com/a.merdeka.com/v264/main-v2-mobile-indexdefer.js"
+	failed with error code -1001 (The request timed out.)
+
+---------------------

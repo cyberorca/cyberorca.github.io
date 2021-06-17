@@ -1,0 +1,51 @@
+if ( ["ChannelPage"].includes(window.kmklabs.pageType) ) 
+{
+  	if( document.getElementById("inf-1") )
+    {
+        infInitCfg = {
+              publisherId : 4685495694,
+              wrapperPage : 'https://www.liputan6.com/infeed/wrapper.html',
+              slots : ['inf-1', 'inf-2', 'inf-3', 'inf-4', 'inf-5', 'inf-6'],
+              seoUrl : true,
+              templateID : 163 
+        };
+
+        var infJS = document.createElement("script");
+        infJS.type = "text/javascript";
+        infJS.async = 1;
+        infJS.src = "https://d.infeed.id/resources/js/v0.0.2/infeed-init.js";
+        document.body.appendChild(infJS);
+    } 
+}
+
+
+else if ( ["ChannelPage"].includes(window.kmklabs.pageType) ) 
+{
+  if (document.getElementById('inf-1'))
+  {
+      var templateID = 161;
+      
+      if( $('.article-snippet--related--new-experience').length>0 )
+      {
+          templateID = 146;
+      }
+
+      if (window.kmklabs.channel.full_slug === 'photo' || window.kmklabs.channel.full_slug === 'video')
+      {
+        templateID = 162;
+      }
+    
+      infInitCfg = {
+            publisherId : 4685495694,
+            wrapperPage : 'https://m.liputan6.com/infeed/wrapper.html',
+            slots : ['inf-1', 'inf-2', 'inf-3', 'inf-4', 'inf-5', 'inf-6'],
+            seoUrl : true,
+            templateID : templateID
+      };
+      var infJS = document.createElement("script");
+      infJS.type = "text/javascript";
+      infJS.async = 1;
+      infJS.src = "https://d.infeed.id/resources/js/v0.0.2/infeed-init.js";
+      document.body.appendChild(infJS);
+  } 
+}

@@ -1,0 +1,52 @@
+
+
+    // Overwriting bid responses for all bidders
+javascript console> pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bids: [{
+      cpm: 1.5
+    }]
+  }
+});
+
+// Overwriting bid responses for a specific bidder and adUnit code (can use either separately)
+javascript console> pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    bids: [{
+        bidder: "spotx",
+        params: {
+            channel_id: 282234,
+            ad_unit: "outstream",
+            outstream_options: {
+                slot: "div-gpt-ad-flying_carpet_mobile",
+                custom_override: {
+                    channel_id: "282234",
+                    content_width: 320,
+                    content_height: 180,
+                    autoplay: 1,
+                    ad_volume: 0,
+                    ad_unit: "incontent",
+                    sticky: 1,
+                    sticky_y_position: "top",
+                    spotx_sticky_x_position: "left",
+                    ad_skippable: 0,
+                    ad_skip_delay: 15,
+                    sticky_y_offset: 150,
+                    sticky_x_offset: 0,
+                    sticky_width: 175,
+                    sticky_height: 98,
+                },
+            },
+        },
+    }]
+  }
+});
+
+// Disabling debugging
+javascript console> pbjs.setConfig({
+  debugging: {
+    enabled: false
+  }
+});

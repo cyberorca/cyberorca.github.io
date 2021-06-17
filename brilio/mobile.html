@@ -145,45 +145,41 @@
     <script>
         var category_page = "Homepage";
 
-            String.prototype.klyFiltering = function(delimiter) {
-                return this.trim().split(delimiter).map(function(t) {
-                    return t.trim().toLowerCase()
-                }).filter(x => x != "");
-            };
+        String.prototype.klyFiltering = function(delimiter) {
+            return this.trim().split(delimiter).map(function(t) {
+                return t.trim().toLowerCase()
+            }).filter(x => x != "");
+        };
 
-            googletag.cmd.push(function() {
+        googletag.cmd.push(function() {
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-sled', 'dfp-gpt-ad-mobile-sled').addService(googletag.pubads());
+            googletag.defineSlot('/36504930/brilio.net/mobile/dfp-headline', [
+                [320, 100],
+                [320, 50]
+            ], 'dfp-gpt-ad-mobile-headline').addService(googletag.pubads());
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/masthead', 'div-gpt-ad-1513147564900-0').addService(googletag.pubads());
+            googletag.defineSlot('/36504930/brilio.net/mobile/dfp-sc', [300, 250], 'dfp-gpt-ad-mobile-sc').addService(googletag.pubads());
+            googletag.defineSlot('/36504930/brilio.net/mobile/dfp-sc2', [300, 250], 'dfp-gpt-ad-mobile-sc2').addService(googletag.pubads());
+            googletag.defineSlot('/36504930/brilio.net/mobile/dfp-sc3', [300, 250], 'dfp-gpt-ad-mobile-sc3').addService(googletag.pubads());
+            googletag.defineSlot('/36504930/brilio.net/mobile/dfp-bottomfrm', [320, 50], 'dfp-gpt-ad-mobile-bottomfrm').addService(googletag.pubads());
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-interscroller', 'div-gpt-ad-mobile-interscroller').addService(googletag.pubads());
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-nativeOut-slot1', 'dfp-gpt-ad-mobile-nativeout1').addService(googletag.pubads());
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-nativeOut-slot2', 'dfp-gpt-ad-mobile-nativeout2').addService(googletag.pubads());
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-nativeOut-slot3', 'dfp-gpt-ad-mobile-nativeout3').addService(googletag.pubads());
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/card', 'dfp-gpt-ad-mobile-card').addService(googletag.pubads());
+            googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-whatsHot', 'dfp-gpt-ad-mobile-whatsHot').addService(googletag.pubads());
 
-                googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-sled', 'dfp-gpt-ad-mobile-sled').addService(googletag.pubads());
-                googletag.defineSlot('/36504930/brilio.net/mobile/dfp-headline', [
-                        [320, 100],
-                        [320, 50]
-                    ], 'dfp-gpt-ad-mobile-headline').addService(googletag.pubads());
-                googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/masthead', 'div-gpt-ad-1513147564900-0').addService(googletag.pubads());
-                googletag.defineSlot('/36504930/brilio.net/mobile/dfp-sc', [300, 250], 'dfp-gpt-ad-mobile-sc').addService(googletag.pubads());
-                googletag.defineSlot('/36504930/brilio.net/mobile/dfp-sc2', [300, 250], 'dfp-gpt-ad-mobile-sc2').addService(googletag.pubads());
-                googletag.defineSlot('/36504930/brilio.net/mobile/dfp-sc3', [300, 250], 'dfp-gpt-ad-mobile-sc3').addService(googletag.pubads());
-                googletag.defineSlot('/36504930/brilio.net/mobile/dfp-bottomfrm', [320, 50], 'dfp-gpt-ad-mobile-bottomfrm').addService(googletag.pubads());
-                googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-interscroller', 'div-gpt-ad-mobile-interscroller').addService(googletag.pubads());
-                googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-nativeOut-slot1', 'dfp-gpt-ad-mobile-nativeout1').addService(googletag.pubads());
-                googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-nativeOut-slot2', 'dfp-gpt-ad-mobile-nativeout2').addService(googletag.pubads());
-                googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-nativeOut-slot3', 'dfp-gpt-ad-mobile-nativeout3').addService(googletag.pubads());
-                googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/card', 'dfp-gpt-ad-mobile-card').addService(googletag.pubads());
-				googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-whatsHot', 'dfp-gpt-ad-mobile-whatsHot').addService(googletag.pubads());
-            
-                //set targetting key value apa saja yg ingin dimasukkan dalam 1 kali adrequest
-                var tagForAds = (typeof window.kly !== 'undefined') ? kly.gtm.tag.klyFiltering("|") : [];
-                googletag.pubads().setTargeting("tags", tagForAds);
-                googletag.pubads().setTargeting("currentUrl", 'https://www.staging.brilio.net');
-                googletag.pubads().setTargeting("channel", 'Homepage');
+            //set targetting key value apa saja yg ingin dimasukkan dalam 1 kali adrequest
+            var tagForAds = (typeof window.kly !== 'undefined') ? kly.gtm.tag.klyFiltering("|") : [];
+            googletag.pubads().setTargeting("tags", tagForAds);
+            googletag.pubads().setTargeting("currentUrl", 'https://www.staging.brilio.net');
+            googletag.pubads().setTargeting("channel", 'Homepage');
 
+            googletag.pubads().enableSingleRequest();
+            googletag.pubads().collapseEmptyDivs();
+            googletag.enableServices();
 
-
-                // googletag.pubads().disableInitialLoad();
-                googletag.pubads().enableSingleRequest();
-                googletag.pubads().collapseEmptyDivs();
-                googletag.enableServices();
-
-            });
+        });
 
         googletag.cmd.push(function() {
             googletag.display('dfp-gpt-ad-mobile-sled');
@@ -191,17 +187,15 @@
         googletag.cmd.push(function() {
             googletag.display('div-gpt-ad-mobile-interscroller');
         });
-
-        
-                    googletag.cmd.push(function() {
-                googletag.display('dfp-gpt-ad-mobile-nativeout1');
-            });
-            googletag.cmd.push(function() {
-                googletag.display('dfp-gpt-ad-mobile-nativeout2');
-            });
-            googletag.cmd.push(function() {
-                googletag.display('dfp-gpt-ad-mobile-nativeout3');
-            });
+        googletag.cmd.push(function() {
+            googletag.display('dfp-gpt-ad-mobile-nativeout1');
+        });
+        googletag.cmd.push(function() {
+            googletag.display('dfp-gpt-ad-mobile-nativeout2');
+        });
+        googletag.cmd.push(function() {
+            googletag.display('dfp-gpt-ad-mobile-nativeout3');
+        });
     </script>
 </body>
 
