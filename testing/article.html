@@ -1020,7 +1020,7 @@ setTimeout(function () {
                                                             intersectionObserver.observe(containerElement);
                                                         }
                                                         function lazzyLoadScroll(){
-                                                            renderAdUnit(1);
+                                                            renderAdUnit();
                                                         }
 
                                                         function addEventListener (evt, fn){
@@ -1032,7 +1032,7 @@ setTimeout(function () {
                                                         }
 
                                                         try{
-                                                            renderAdUnit();
+                                                            renderAdUnit(1);
                                                         }catch(err) {
                                                             addEventListener("scroll",lazzyLoadScroll);
                                                         }
