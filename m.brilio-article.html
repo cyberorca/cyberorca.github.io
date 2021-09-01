@@ -424,7 +424,8 @@
             }
         };
 
-        
+        window.GAMLibrary.lazzyLoadingAdunit();
+		
         googletag.cmd.push(function() {
             googletag.defineSlot('/36504930/brilio.net/mobile/dfp-headline', [
                 [320, 100],
@@ -443,8 +444,7 @@
             googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-nativeOut-slot3', 'dfp-gpt-ad-mobile-nativeout3').addService(googletag.pubads());
             googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-detailRecommendation', 'dfp-gpt-ad-mobile-detail-recomm').addService(googletag.pubads());
             // googletag.defineOutOfPageSlot('/36504930/brilio.net/mobile/dfp-middle-widget', 'dfp-gpt-ad-mobile-middle-widget').addService(googletag.pubads());
-
-            window.GAMLibrary.lazzyLoadingAdunit(); 
+ 
             googletag.pubads().setTargeting("dummy ", ["1"]);
 
             //set targetting key value apa saja yg ingin dimasukkan dalam 1 kali adrequest
