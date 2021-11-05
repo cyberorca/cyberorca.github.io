@@ -13,6 +13,8 @@
             let _ios = ["iPad Simulator","iPhone Simulator","iPod Simulator","iPad","iPhone","iPod"].includes(navigator.platform)||navigator.userAgent.includes("Mac")&&"ontouchend"in document;
             let _orientationScreenAPI = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
             let _logContainer = document.querySelector(".state");
+            _logContainer.innerHTML = "";
+
             if (typeof _orientationScreenAPI !== "undefined") {
                 console.log("_orientationScreenAPI",_orientationScreenAPI);
             } else {
