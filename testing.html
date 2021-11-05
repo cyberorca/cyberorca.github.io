@@ -87,9 +87,17 @@
         function iosMobilePullerOrieantation(){
             let pOrientation = document.createElement("p");
             let _logContainer = document.querySelector(".state");
+            let pcCriOS = document.createElement("p");
+            let pCPH1937 = document.createElement("p");
+            
             _logContainer.innerHTML = "";
             pOrientation.innerText = " ORIENTATION INNER WIDTH x INNER HEIGHT : " + window.innerWidth + "x" + window.innerHeight ;
+            pcCriOS.innerText = " ORIENTATION CLIENT HEIGHT CriOS : " + navigator.userAgent.match(/(criOS)/ig);
+            pCPH1937.innerText = " ORIENTATION CLIENT HEIGHT CPH1937 : " + navigator.userAgent.match(/(CPH1937)/ig);
+            
             _logContainer.appendChild(pOrientation);
+            _logContainer.appendChild(pcCriOS);
+            _logContainer.appendChild(pCPH1937);
         }
 
     </script>
