@@ -8,25 +8,25 @@
 <body>
     <div class="state"></div>
     <script>
-        let ios = navigator.platform.match(/(iPad\ Simulator|iPhone\ Simulator|iPod\ Simulator|iPad|iPhone|iPod)/ig) !== null;
+        var ios = navigator.platform.match(/(iPad\ Simulator|iPhone\ Simulator|iPod\ Simulator|iPad|iPhone|iPod)/ig) !== null;
         if(ios){
             window.addEventListener("resize", iosMobilePullerOrieantation);
         }else{
             window.addEventListener("orientationchange", mobilePullerOrieantation);
         }   
         function mobilePullerOrieantation(){
-            let ios = ["iPad Simulator","iPhone Simulator","iPod Simulator","iPad","iPhone","iPod"].includes(navigator.platform)||navigator.userAgent.includes("Mac")&&"ontouchend"in document;
-            let orientationScreenAPI = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-            let logContainer = document.querySelector(".state");
+            var ios = ["iPad Simulator","iPhone Simulator","iPod Simulator","iPad","iPhone","iPod"].includes(navigator.platform)||navigator.userAgent.includes("Mac")&&"ontouchend"in document;
+            var orientationScreenAPI = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+            var logContainer = document.querySelector(".state");
             logContainer.innerHTML = "";
 
-            let isPortrait = 0;
-            let isPortraitListener = 0;
+            var isPortrait = 0;
+            var isPortraitListener = 0;
 
             if (typeof orientationScreenAPI !== "undefined") {
                 console.log("orientationScreenAPI",orientationScreenAPI);
             } else {
-                let orientation = document.documentElement.clientWidth < document.documentElement.clientHeight ? 1 : 0;
+                var orientation = document.documentElement.clientWidth < document.documentElement.clientHeight ? 1 : 0;
                 orientation = ios ? ((navigator.userAgent.match(/(criOS)/ig) !== null) ? orientation : !orientation) : ((navigator.userAgent.match(/(CPH1937)/ig) !== null) ? orientation : !orientation);
                 console.log("crIOS",orientation);
             }
@@ -57,14 +57,14 @@
                 }
             });
 
-            let pOrientationScreenAPI = document.createElement("p");
-            let pOrientation = document.createElement("p");
-            let pcCriOS = document.createElement("p");
-            let pCPH1937 = document.createElement("p");
-            let pDevice = document.createElement("p");
-            let pClientHeight = document.createElement("p");
-            let pIsPortrait = document.createElement("p");
-            let pIsPortraitListener = document.createElement("p");
+            var pOrientationScreenAPI = document.createElement("p");
+            var pOrientation = document.createElement("p");
+            var pcCriOS = document.createElement("p");
+            var pCPH1937 = document.createElement("p");
+            var pDevice = document.createElement("p");
+            var pClientHeight = document.createElement("p");
+            var pIsPortrait = document.createElement("p");
+            var pIsPortraitListener = document.createElement("p");
 
             pDevice.innerText = " DEVICE IS IOS ? : " +ios;
             pOrientationScreenAPI.innerText = " ORIENTATION SCREEN API : " + orientationScreenAPI;
@@ -85,11 +85,11 @@
         }
 
         function iosMobilePullerOrieantation(){
-            let pOrientation = document.createElement("p");
-            let logContainer = document.querySelector(".state");
-            let pcCriOS = document.createElement("p");
-            let pCPH1937 = document.createElement("p");
-            let pClientHeight = document.createElement("p");
+            var pOrientation = document.createElement("p");
+            var logContainer = document.querySelector(".state");
+            var pcCriOS = document.createElement("p");
+            var pCPH1937 = document.createElement("p");
+            var pClientHeight = document.createElement("p");
 
             logContainer.innerHTML = "";
             pOrientation.innerText = " ORIENTATION INNER WIDTH x INNER HEIGHT : " + window.innerWidth + "x" + window.innerHeight ;
