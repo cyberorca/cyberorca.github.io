@@ -8,27 +8,27 @@
 <body>
     <div class="state"></div>
     <script>
-        let _ios = navigator.platform.match(/(iPad\ Simulator|iPhone\ Simulator|iPod\ Simulator|iPad|iPhone|iPod)/ig) !== null;
-        if(_ios){
+        let ios = navigator.platform.match(/(iPad\ Simulator|iPhone\ Simulator|iPod\ Simulator|iPad|iPhone|iPod)/ig) !== null;
+        if(ios){
             window.addEventListener("resize", iosMobilePullerOrieantation);
         }else{
             window.addEventListener("orientationchange", mobilePullerOrieantation);
         }   
         function mobilePullerOrieantation(){
-            let _ios = ["iPad Simulator","iPhone Simulator","iPod Simulator","iPad","iPhone","iPod"].includes(navigator.platform)||navigator.userAgent.includes("Mac")&&"ontouchend"in document;
-            let _orientationScreenAPI = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-            let _logContainer = document.querySelector(".state");
-            _logContainer.innerHTML = "";
+            let ios = ["iPad Simulator","iPhone Simulator","iPod Simulator","iPad","iPhone","iPod"].includes(navigator.platform)||navigator.userAgent.includes("Mac")&&"ontouchend"in document;
+            let orientationScreenAPI = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+            let logContainer = document.querySelector(".state");
+            logContainer.innerHTML = "";
 
-            let _isPortrait = 0;
-            let _isPortraitListener = 0;
+            let isPortrait = 0;
+            let isPortraitListener = 0;
 
-            if (typeof _orientationScreenAPI !== "undefined") {
-                console.log("_orientationScreenAPI",_orientationScreenAPI);
+            if (typeof orientationScreenAPI !== "undefined") {
+                console.log("orientationScreenAPI",orientationScreenAPI);
             } else {
-                let _orientation = document.documentElement.clientWidth < document.documentElement.clientHeight ? 1 : 0;
-                _orientation = _ios ? ((navigator.userAgent.match(/(criOS)/ig) !== null) ? _orientation : !_orientation) : ((navigator.userAgent.match(/(CPH1937)/ig) !== null) ? _orientation : !_orientation);
-                console.log("crIOS",_orientation);
+                let orientation = document.documentElement.clientWidth < document.documentElement.clientHeight ? 1 : 0;
+                orientation = ios ? ((navigator.userAgent.match(/(criOS)/ig) !== null) ? orientation : !orientation) : ((navigator.userAgent.match(/(CPH1937)/ig) !== null) ? orientation : !orientation);
+                console.log("crIOS",orientation);
             }
 
 
@@ -39,21 +39,21 @@
             // If there are matches, we're in portrait
             if(mql.matches) {  
                 // Portrait orientation
-                _isPortrait = 1;
+                isPortrait = 1;
             } else {  
                 // Landscape orientation
-                _isPortrait = 0;
+                isPortrait = 0;
             }
 
             // Add a media query change listener
             mql.addListener(function(m) {
                 if(m.matches) {
                     // Changed to portrait
-                    _isPortraitListener = 1;
+                    isPortraitListener = 1;
                 }
                 else {
                     // Changed to landscape
-                    _isPortraitListener = 0;
+                    isPortraitListener = 0;
                 }
             });
 
@@ -66,41 +66,41 @@
             let pIsPortrait = document.createElement("p");
             let pIsPortraitListener = document.createElement("p");
 
-            pDevice.innerText = " DEVICE IS IOS ? : " +_ios;
-            pOrientationScreenAPI.innerText = " ORIENTATION SCREEN API : " + _orientationScreenAPI;
+            pDevice.innerText = " DEVICE IS IOS ? : " +ios;
+            pOrientationScreenAPI.innerText = " ORIENTATION SCREEN API : " + orientationScreenAPI;
 
             pcCriOS.innerText = " ORIENTATION CLIENT HEIGHT CriOS : " + navigator.userAgent.match(/(criOS)/ig);
             pCPH1937.innerText = " ORIENTATION CLIENT HEIGHT CPH1937 : " + navigator.userAgent.match(/(CPH1937)/ig);
             pClientHeight.innerText = " CLIENT HEIGHT ( document.documentElement.clientWidth < document.documentElement.clientHeight ): " + (document.documentElement.clientWidth < document.documentElement.clientHeight ? 1 : 0 );
-            pIsPortrait.innerText = "IS PROTRAIT MEDIA QUERY : " + _isPortrait;
-            pIsPortraitListener.innerText = "IS PROTRAIT MEDIA QUERY LISTENER : " + _isPortraitListener;
+            pIsPortrait.innerText = "IS PROTRAIT MEDIA QUERY : " + isPortrait;
+            pIsPortraitListener.innerText = "IS PROTRAIT MEDIA QUERY LISTENER : " + isPortraitListener;
 
-            _logContainer.appendChild(pDevice);
-            _logContainer.appendChild(pOrientationScreenAPI);
-            _logContainer.appendChild(pcCriOS);
-            _logContainer.appendChild(pCPH1937);
-            _logContainer.appendChild(pClientHeight);
-            _logContainer.appendChild(pIsPortrait);
-            _logContainer.appendChild(pIsPortraitListener);
+            logContainer.appendChild(pDevice);
+            logContainer.appendChild(pOrientationScreenAPI);
+            logContainer.appendChild(pcCriOS);
+            logContainer.appendChild(pCPH1937);
+            logContainer.appendChild(pClientHeight);
+            logContainer.appendChild(pIsPortrait);
+            logContainer.appendChild(pIsPortraitListener);
         }
 
         function iosMobilePullerOrieantation(){
             let pOrientation = document.createElement("p");
-            let _logContainer = document.querySelector(".state");
+            let logContainer = document.querySelector(".state");
             let pcCriOS = document.createElement("p");
             let pCPH1937 = document.createElement("p");
             let pClientHeight = document.createElement("p");
 
-            _logContainer.innerHTML = "";
+            logContainer.innerHTML = "";
             pOrientation.innerText = " ORIENTATION INNER WIDTH x INNER HEIGHT : " + window.innerWidth + "x" + window.innerHeight ;
             pcCriOS.innerText = " ORIENTATION CLIENT HEIGHT CriOS : " + navigator.userAgent.match(/(criOS)/ig);
             pCPH1937.innerText = " ORIENTATION CLIENT HEIGHT CPH1937 : " + navigator.userAgent.match(/(CPH1937)/ig);
             pClientHeight.innerText = " CLIENT HEIGHT ( document.documentElement.clientWidth < document.documentElement.clientHeight ): " + (document.documentElement.clientWidth < document.documentElement.clientHeight ? 1 : 0 );
             
-            _logContainer.appendChild(pOrientation);
-            _logContainer.appendChild(pcCriOS);
-            _logContainer.appendChild(pCPH1937);
-            _logContainer.appendChild(pClientHeight);
+            logContainer.appendChild(pOrientation);
+            logContainer.appendChild(pcCriOS);
+            logContainer.appendChild(pCPH1937);
+            logContainer.appendChild(pClientHeight);
         }
 
     </script>
