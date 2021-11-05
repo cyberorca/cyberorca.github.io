@@ -8,7 +8,7 @@
 <body>
     <div class="state"></div>
     <script>
-        let _ios = ["iPad Simulator","iPhone Simulator","iPod Simulator","iPad","iPhone","iPod"].includes(navigator.platform)||navigator.userAgent.includes("Mac")&&"ontouchend"in document;
+        let _ios = navigator.platform.match(/(iPad\ Simulator|iPhone\ Simulator|iPod\ Simulator|iPad|iPhone|iPod)/ig) !== null;
         if(_ios){
             window.addEventListener("resize", iosMobilePullerOrieantation);
         }else{
