@@ -27,15 +27,21 @@
             let pcCriOS = document.createElement("p");
             let pCPH1937 = document.createElement("p");
             let pDevice = document.createElement("p");
+            let pClientHeight = document.createElement("p");
+            let pClientHeight = document.createElement("p");
+
             pDevice.innerText = " DEVICE IS IOS ? : " +_ios;
             pOrientationScreenAPI.innerText = " ORIENTATION SCREEN API : " + _orientationScreenAPI;
+
             pcCriOS.innerText = " ORIENTATION CLIENT HEIGHT CriOS : " + navigator.userAgent.match(/(criOS)/ig);
             pCPH1937.innerText = " ORIENTATION CLIENT HEIGHT CPH1937 : " + navigator.userAgent.match(/(CPH1937)/ig);
-
+            pClientHeight.innerText = " CLIENT HEIGHT ( document.documentElement.clientWidth < document.documentElement.clientHeight ): " + (document.documentElement.clientWidth < document.documentElement.clientHeight ? 1 : 0 );
+           
             _logContainer.appendChild(pDevice);
             _logContainer.appendChild(pOrientationScreenAPI);
             _logContainer.appendChild(pcCriOS);
             _logContainer.appendChild(pCPH1937);
+            _logContainer.appendChild(pClientHeight);
         }
     </script>
 
