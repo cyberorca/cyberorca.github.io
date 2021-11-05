@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="state"></div>
     <script>
         window.addEventListener("orientationchange", mobilePullerOrieantation);
         function mobilePullerOrieantation(){
@@ -19,12 +20,11 @@
                 _orientation = _ios ? ((navigator.userAgent.match(/(criOS)/ig) !== null) ? _orientation : !_orientation) : ((navigator.userAgent.match(/(CPH1937)/ig) !== null) ? _orientation : !_orientation);
                 console.log("crIOS",_orientation);
             }
-            let pDevice = document.createElement("p");
             let pOrientationScreenAPI = document.createElement("p");
             let pOrientation = document.createElement("p");
             let pcCriOS = document.createElement("p");
             let pCPH1937 = document.createElement("p");
-
+            let pDevice = document.createElement("p");
             pDevice.innerText = " DEVICE IS IOS ? : " +_ios;
             pOrientationScreenAPI.innerText = " ORIENTATION SCREEN API : " + _orientationScreenAPI;
             pcCriOS.innerText = " ORIENTATION CLIENT HEIGHT CriOS : " + navigator.userAgent.match(/(criOS)/ig);
@@ -36,8 +36,6 @@
             _logContainer.appendChild(pCPH1937);
         }
     </script>
-    <div class="state">
 
-    </div>
 </body>
 </html>
