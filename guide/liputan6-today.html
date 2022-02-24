@@ -18,7 +18,7 @@
             <p>Preview :  <a href="https://d.kapanlaginetwork.com/banner/preview/2022/02/23/today/index.html" target="_blank">https://d.kapanlaginetwork.com/banner/preview/2022/02/23/today/index.html</a> </p>
             <pre>
             <code class="language-html">   
-                /** GPT & LOADER LETAKKAN DIDALAM HEAD **/
+                /** GPT LOADER, SCRIPT & STYLE LETAKKAN DIDALAM HEAD **/
                 &lt;script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"&gt;&lt;/script&gt;
                 
                 &lt;script&gt;
@@ -33,6 +33,31 @@
                         googletag.enableServices();
                     });
                 &lt;/script&gt;
+
+                &lt;style&gt;
+                    .gam-center{
+                       display: flex;
+                       justify-content: center;
+                    }
+                    .gam-bottomframe-container{
+                       bottom: 0px; 
+                       max-height: 100px;
+                       position: fixed; 
+                       z-index: 99999;
+                       width:100%;
+                       background-color: rgba(236, 236, 236, 0.7);
+                       display: flex;
+                       justify-content: center;
+                    }
+                    .gam-320{
+                       min-width: 320px; 
+                       min-height: 50px;
+                    }
+                    .gam-300{
+                       min-width: 300px;
+                       min-height: 250px;
+                    }
+                &lt;/style&gt;
             </code>
             </pre>
             <hr>
@@ -42,7 +67,7 @@
             <pre>
             <code class="language-html">   
                 &lt;!-- /36504930/KLY/TODAY/LIPUTAN6.COM/HEADLINE --&gt;
-                &lt;div id='div-gpt-ad-headline'&gt;
+                &lt;div id='div-gpt-ad-headline' class='gam-center gam-320'&gt;
                     &lt;script&gt;
                     googletag.cmd.push(function() { googletag.display('div-gpt-ad-headline'); });
                     &lt;/script&gt;
@@ -56,7 +81,7 @@
             <pre>
                 <code class="language-html">   
                     &lt;!-- /36504930/KLY/TODAY/LIPUTAN6.COM/SHOWCASE --&gt;
-                    &lt;div id='div-gpt-ad-showcase'&gt;
+                    &lt;div id='div-gpt-ad-showcase' class='gam-center gam-300'&gt;
                         &lt;script&gt;
                         googletag.cmd.push(function() { googletag.display('div-gpt-ad-showcase'); });
                         &lt;/script&gt;
@@ -69,9 +94,9 @@
             <p>Letakkan dibawah footer</p>
             <pre>
                 <code class="language-html">  
-                    &lt;div id="dfp-bframe-cont" class="dfp-bframe-cont" style="bottom: 0px; max-height: 100px;position: fixed; z-index: 99999;width:100%;background-color: rgba(236, 236, 236, 0.7);display: flex;justify-content: center;"&gt;
+                    &lt;div class='gam-bottomframe-container'&gt;
                         &lt;!-- /36504930/KLY/TODAY/LIPUTAN6.COM/BOTTOM_FRAME --&gt;
-                        &lt;div id='div-gpt-ad-bottomframe'&gt;
+                        &lt;div id='div-gpt-ad-bottomframe' class='gam-320'&gt;
                             &lt;script&gt;
                             googletag.cmd.push(function() { googletag.display('div-gpt-ad-bottomframe'); });
                             &lt;/script&gt;
