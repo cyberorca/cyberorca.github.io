@@ -15,7 +15,7 @@
         <div class="container">
             <hr>
             <h2>GUIDANCE PEMASANGAN GPT DI HALAMAN TODAY</h1>
-            <p>Preview :  <a href="https://d.kapanlaginetwork.com/banner/preview/2022/02/23/today/liputan6-sc.html" target="_blank">https://d.kapanlaginetwork.com/banner/preview/2022/02/23/today/liputan6-sc.html</a> </p>
+            <p>Preview :  <a href="https://d.kapanlaginetwork.com/banner/preview/2022/02/23/today/liputan6-exposer.html" target="_blank">https://d.kapanlaginetwork.com/banner/preview/2022/02/23/today/liputan6-exposer.html</a> </p>
             <pre>
             <code class="language-html">   
                 /** GPT LOADER, SCRIPT & STYLE LETAKKAN DIDALAM HEAD **/
@@ -23,36 +23,13 @@
                 
                 &lt;script&gt;
                     window.googletag = window.googletag || {cmd: []};
-                    window.GAMLIBRARY = {};
-                    window.GAMLIBRARY = {
-                    SCINFINITE : function(){
-                        let paging = document.querySelectorAll(".infinite-box.detail-paragraph.detail-paging");
-                        let sc = null;
-                        let scContainer = document.createElement('div');
-                        if( paging && paging.length > 0 ){
-                            scContainer.id = "div-gpt-ad-showcase-2";
-                            scContainer.classList.add("gam-center","gam-300");
-                            paging[1].insertAdjacentElement("beforebegin",scContainer);
-                            setTimeout(() => {
-                                sc = googletag.defineSlot("/36504930/KLY/TODAY/LIPUTAN6.COM/SHOWCASE", [300, 250], "div-gpt-ad-showcase-2")
-                                    .addService(googletag.pubads())
-                                    .setTargeting('position', '2');
-                                googletag.display("div-gpt-ad-showcase-2");
-                                googletag.pubads().refresh([sc]);
-                            },500);
-                        }
-        
-                    }
-                    };
                     googletag.cmd.push(function() {
                         googletag.defineSlot('/36504930/KLY/TODAY/LIPUTAN6.COM/HEADLINE', [[320, 50], [320, 100]], 'div-gpt-ad-headline').addService(googletag.pubads());
                         googletag.defineSlot('/36504930/KLY/TODAY/LIPUTAN6.COM/BOTTOM_FRAME', [[320, 50], [320, 100]], 'div-gpt-ad-bottomframe').addService(googletag.pubads());
-                        googletag.defineSlot("/36504930/KLY/TODAY/LIPUTAN6.COM/SHOWCASE", [300, 250], "div-gpt-ad-showcase").addService(googletag.pubads()).setTargeting('position', '1');
-             
-                        GAMLIBRARY.SCINFINITE();
+                        googletag.defineSlot("/36504930/KLY/TODAY/LIPUTAN6.COM/SHOWCASE", [300, 250], "div-gpt-ad-showcase").addService(googletag.pubads());
+                        googletag.defineSlot('/36504930/KLY/TODAY/LIPUTAN6.COM/EXPOSER', [[300, 600], [160, 600], [250, 250], [300, 250]], 'div-gpt-ad-exposer').addService(googletag.pubads());
                  
                         googletag.pubads().enableSingleRequest();
-                        googletag.pubads().collapseEmptyDivs();
                         googletag.enableServices();
                     });
                 &lt;/script&gt;
@@ -107,6 +84,20 @@
                     &lt;div id='div-gpt-ad-showcase' class='gam-center gam-300'&gt;
                         &lt;script&gt;
                         googletag.cmd.push(function() { googletag.display('div-gpt-ad-showcase'); });
+                        &lt;/script&gt;
+                    &lt;/div&gt;
+                </code>
+            </pre>
+            <hr>
+            <br>
+            <h3>EXPOSER CONTAINER</h3>
+            <p>Letakkan setelah paging 2</p>
+            <pre>
+                <code class="language-html">   
+                    &lt;!-- /36504930/KLY/TODAY/LIPUTAN6.COM/EXPOSER --&gt;
+                    &lt;div id='div-gpt-ad-exposer' class='gam-center gam-300'&gt;
+                        &lt;script&gt;
+                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-exposer'); });
                         &lt;/script&gt;
                     &lt;/div&gt;
                 </code>
