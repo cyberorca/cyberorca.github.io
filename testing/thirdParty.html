@@ -1,0 +1,485 @@
+<div class="mobile-puller">
+    <div class="section-collect">
+        <div id="mobile-puller-section">
+            <a target="_blank" class="mobile-puller-linkwrap">
+                <div class="mobile-puller-blocker"></div>
+                <iframe id="puller-iframe-container" src="https://cdns.klimg.com/d.kapanlaginetwork.com/banner/preview/2022/10/12/sustain/320x250/index.html" width="320" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;"></iframe>
+            </a>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+    .mobile-puller *,
+    .mobile-puller *:after,
+    .mobile-puller *:before {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    .mobile-puller-linkwrap {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .mobile-puller-blocker {
+        /*position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 1;*/
+        position: fixed;
+        height: 250px;
+        width: 320px;
+        z-index: 1;
+    }
+    
+    .mobile-puller-linkwrap iframe {
+        max-width: unset;
+        max-height: unset;
+        z-index: 2;
+    }
+    
+    div#mobile-puller-section {
+        position: relative;
+        display: block;
+        width: 320px;
+        height: 250px;
+        margin: 0 auto;
+    }
+    
+    #mdk-body .channel-section {
+        z-index: -99;
+    }
+    
+    @media only screen and (orientation: landscape) {
+        .mobile-puller.active {
+            height: 100vh;
+        }
+    }
+</style>
+
+
+<script>
+    var siteConfig = parent.kmklabs ? parent.kmklabs : parent.kly;
+    var articleType = {
+        "TextTypeArticle": {
+            'scroll': 300
+        },
+        "VideoGallery": {
+            'scroll': 300
+        },
+        "PhotoGallery": {
+            'scroll': 0
+        },
+        "default": {
+            'scroll': 300
+        },
+    };
+    var myparent = window.frameElement.parentElement.parentElement;
+    myparent.removeAttribute('style');
+
+    if (siteConfig.site === "Merdeka") {
+        parent.document.querySelector("#dfp-bframe-cont-transparent").removeAttribute("style");
+        myparent = parent.document.querySelector('#div-gpt-ad-merdeka-bottomfrm');
+    }
+
+    if (siteConfig.site === "fimela" || siteConfig.gtm.subCategory == "planet") {
+        myparent.style.setProperty('display', 'none'); /* TWEAK DISPLAY */
+        myparent.setAttribute('class', 'mobile-puller-wrapper');
+        setTimeout(() => {
+            myparent.style.setProperty('display', 'block');
+        }, 100); /* TWEAK DISPLAY */
+    } else {
+        myparent.classList.add('mobile-puller-wrapper');
+    }
+
+    var btnCloseRemove = setInterval(function() {
+        if (parent.document.querySelector("#dfp-bframe-close") !== null) {
+            parent.document.querySelector("#dfp-bframe-close").style.display = "none";
+            clearInterval(btnCloseRemove);
+        }
+    }, 500);
+
+    var templateCss = `
+        @media (max-width: 320px) {
+            div#btn-hide {
+                right: 0px;
+            }
+        }
+				div#div-gpt-ad-mobile-bottomfrm,
+        div#dfp-gpt-ad-mobile-bottomfrm,
+        div#div-gpt-ad-fimela-bottomfrm,
+        div#div-gpt-ad-otosia-bottomfrm,
+        div#div-gpt-ad-bola-bottomfrm,
+        div#div-gpt-ad-bolacom-bottomfrm,
+        div#div-gpt-ad-dream-bottomfrm,
+        div#div-gpt-ad-liputan6-bottomfrm, 
+        div#div-gpt-ad-kapanlagi-bottomfrm,
+        div#div-gpt-ad-merdeka-bottomfrm
+        {
+            position: fixed!important;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column-reverse;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mobile-puller-wrapper {
+            bottom: -300px;
+            transition: bottom 1s ease-in-out;
+            z-index: 999;
+        }
+        
+        div#btn-hide {
+            position: absolute;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            top: -15px;
+            border-radius: 100px;
+            border: solid 1px;
+            z-index: 9;
+        }
+        
+        div#btn-hide img {
+            width: 100%;
+            position: relative;
+        }
+        
+        div#btn-hide p {
+            display: block;
+            text-align: center;
+            line-height: 28px;
+            font-family: sans-serif;
+            font-weight: bold;
+            border-radius: 100px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .back-to-top {
+            display: none;
+        }
+        
+        #mdk-body .channel-section {
+            z-index: 0;
+        }
+    `;
+
+    var htmlWrapper = document.createElement("div");
+    var buttonHide = document.createElement("div");
+    var myStyle = document.createElement("style");
+    htmlWrapper.style.position = "unset";
+    buttonHide.id = "btn-hide";
+    buttonHide.innerHTML = `<p>7</p>`;
+    myStyle.textContent = templateCss;
+    htmlWrapper.appendChild(buttonHide);
+    htmlWrapper.appendChild(myStyle);
+
+    myparent.appendChild(htmlWrapper);
+
+    var pageType = siteConfig.gtm.type == '' ? 'default' : siteConfig.gtm.type;
+    var mobilePullerWrapper = parent.document.querySelector(".mobile-puller-wrapper");
+    var mobilePullerBtnClose = parent.document.getElementById("btn-hide");
+    var mobilePullerClickLP = document.querySelector(".mobile-puller-linkwrap");
+    var mobilePullerScrollEnd = 0; //articleType[pageType].scroll;
+    var mobilePullerPosisitionStart = -250;
+    var mobilePullerCountdownStart = 7;
+    var mobilePullerCountdownShown = false;
+    var mobilePullerCloseStatus = false;
+    var mobilePullercCanClose = false;
+    var mobilePullerShown = false;
+    var mobilePullercWidgetRamadhan = parent.document.querySelector(".spinner__container");
+
+    var puller_mobilePullerDMPCat = `cigarettes,events`.replace(/(\n|\s+)/ig, '').split(/\s*,\s*/);
+    var dfp_macro = '{"lineitemId":"0", "advertiserId":"0", "orderId":"0", "creativeId":"138415864488", "adunitId":"35505050"}';
+    var dfp_MobilePullerLandingPage = "%%CLICK_URL_UNESC%%https://ad.doubleclick.net/ddm/trackclk/N1469703.3785329KAPANLAGIYOUNIVE/B28700009.348902430;dc_trk_aid=540295504;dc_trk_cid=180143535;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=";
+    var _ios = parent.navigator.platform.match(/(iPad\ Simulator|iPhone\ Simulator|iPod\ Simulator|iPad|iPhone|iPod)/ig) !== null;
+    var iframeQueryURL = "?c=%%CLICK_URL_UNESC%%";
+    var containerEl = document.querySelector(".mobile-puller");
+    var iframeEl = containerEl.querySelectorAll('iframe')[0];
+
+
+    iframeEl.addEventListener('load', function() {
+        var elContainer = document.createElement("div");
+        elContainer.innerHTML = `<img height="1" width="1" style="border-style:none;" alt="" src="https://insight.adsrvr.org/track/pxl/?adv=p13l50h&ct=0:y4l9c5h&fmt=3" />
+        <img src="https://secure-gl.imrworldwide.com/cgi-bin/m?ca=nlsn364138&cr=crtve&ce=kapanlagiid&pc=kapanlagiid_plc0001&ci=nlsnci3157&am=3&at=view&rt=banner&st=image&r=%%CACHEBUSTER%%" style="display:none" />
+        <SCRIPT TYPE="application/javascript" SRC="https://pixel.adsafeprotected.com/rjss/st/1202212/66357137/skeleton.js"><\/SCRIPT>
+        <NOSCRIPT><IMG SRC="https://pixel.adsafeprotected.com/rfw/st/1202212/66357136/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></NOSCRIPT>
+        <SCRIPT language='JavaScript1.1' SRC="https://ad.doubleclick.net/ddm/trackimpj/N1469703.3785329KAPANLAGIYOUNIVE/B28700009.348902430;dc_trk_aid=540295504;dc_trk_cid=180143535;ord=%%CACHEBUSTER%%;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=?"><\/SCRIPT>
+        <img alt='' src='https://pubads.g.doubleclick.net/activity;dc_iu=/36504930/DFPAudiencePixel;ord=1;dc_seg=7288754207?' width=1 height=1 border=0/>
+        <img alt='' src='https://pubads.g.doubleclick.net/activity;dc_iu=/36504930/DFPAudiencePixel;ord=1;dc_seg=7368304491?' width=1 height=1 border=0/>
+        `;
+        elContainer.querySelectorAll("img, script, noscript, iframe").forEach(el => {
+            var scriptContainer = null;
+            if (el.tagName === 'SCRIPT') {
+                scriptContainer = document.createElement("script");
+                if (el.hasAttributes()) {
+                    for (let attr of el.attributes) {
+                        scriptContainer.setAttribute(attr.name, attr.value);
+                    }
+                    containerEl.insertAdjacentElement("beforeend", scriptContainer);
+                }
+            } else {
+                containerEl.insertAdjacentElement("beforeend", el);
+            }
+        });
+    });
+
+
+    _boot();
+
+    if (_ios) {
+        parent.window.addEventListener("resize", mobilePullerOrieantation);
+    } else {
+        parent.window.addEventListener("orientationchange", mobilePullerOrieantation);
+    }
+
+    if ("" !== "https://ad.doubleclick.net/ddm/trackclk/N1469703.3785329KAPANLAGIYOUNIVE/B28700009.348902430;dc_trk_aid=540295504;dc_trk_cid=180143535;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=") {
+        mobilePullerClickLP.addEventListener("click", mobilePullerLandingPage);
+    } else {
+        var src = '';
+        if (iframeEl) {
+            src = (iframeEl.getAttribute('src') !== null) ? iframeEl.getAttribute('src') + iframeQueryURL : '';
+            iframeEl.setAttribute('src', src);
+        }
+        document.querySelector(".mobile-puller-blocker").remove();
+    }
+
+    function _boot() {
+
+        /* NORMALIZE UI ON ALL KLY SITE */
+        normalize_env();
+
+        /* FLAGING STARTING STATE */
+        mobilePullerShown = true;
+
+        /* ONLY SHOW IN PORTRAIT MODE */
+        if (isPortrait()) {
+            if (!mobilePullerScrollEnd) {
+                showPuller();
+            } else {
+                parent.window.addEventListener("scroll", scrollMobilePulller);
+                parent.window.addEventListener("scroll", scrollMobilePulllerCekFakta);
+            }
+        }
+    }
+
+    function normalize_env() {
+
+        window.frameElement.style = " width : 320px; height: 250px;";
+        window.frameElement.parentElement.style = " width : 320px; height: 250px; margin : 0 auto;";
+
+        if (parent.kmklabs) {
+            parent.kmklabs.OverlayVideo = false;
+            if (siteConfig.site == "bola.com") {
+                parent.document.querySelector(".layout__nav-content").style.setProperty('position', 'unset', 'important');
+                parent.document.querySelector(".layout__content").style.setProperty('padding-top', 'unset', 'important');
+                parent.document.querySelector(".nav-main").style.setProperty('z-index', 'unset', 'important');
+                parent.document.querySelector(".nav-main__middle").style.setProperty('z-index', '2', 'important');
+                parent.document.querySelector(".menu-panel__close").addEventListener('click', () => {
+                    parent.document.querySelector(".layout__nav-content").style.setProperty('position', 'unset', 'important');
+                })
+            }
+
+            if (siteConfig.site == "fimela") {
+                if (mobilePullerWrapper.style.bottom > -1) {
+                    parent.document.querySelector(".menu-panel__close-icon.menu-panel__close-icon__fimela.i-menu-close-fimela").addEventListener('click', (e) => {
+                        showPuller();
+                    });
+                    parent.document.querySelector(".nav-main__left.nav-main__left__fimela.js-nav-left.i-nav-menu-fimela").addEventListener('click', (e) => {
+                        mobilePullerClose();
+                    });
+                }
+            }
+        }
+
+        if (parent.kly) {
+            parent.kly.OverlayVideo = false;
+        }
+
+        var _gamLibararyIndex_ = 0;
+        var _gamLibarary_ = setInterval(function() {
+            if (typeof parent.window.GAMLibrary == "object") {
+                parent.window.GAMLibrary.setGamBFInterval(false);
+            }
+            _gamLibararyIndex_++;
+            if (_gamLibararyIndex_ == 15) {
+                clearInterval(_gamLibarary_);
+            }
+        }, 100)
+    }
+
+    function mobilePullerGenerateDMPLP() {
+        if (typeof parent.window.createDMPTracker === 'function') {
+            parent.window.createDMPTracker(puller_mobilePullerDMPCat, dfp_MobilePullerLandingPage, dfp_macro);
+        } else {
+            parent.window.open(dfp_MobilePullerLandingPage, '_blank');
+        }
+    }
+
+    function mobilePullerLandingPage() {
+        mobilePullerGenerateDMPLP();
+    }
+
+    function scrollMobilePulllerCekFakta() {
+        if (parent.document.querySelector(".cek-fakta__popup")) {
+            parent.document.querySelector(".cek-fakta__popup").style.top = "100vh";
+        }
+    }
+
+    function scrollMobilePulller() {
+        var scrollNode = parent.document.scrollingElement || parent.document.documentElement;
+        var scrollTop = scrollNode.scrollTop;
+        if (scrollTop >= mobilePullerScrollEnd) {
+            parent.window.removeEventListener("scroll", scrollMobilePulller);
+            showPuller();
+        }
+    }
+
+    function showPuller() {
+        mobilePullerCountdownShown = true;
+        mobilePullerShown = true;
+        mobilePullerShowCountdown();
+    }
+
+    function mobilePullerShowCountdown() {
+        mobilePullerBtnClose.style.display = "block";
+
+        if (mobilePullerCountdownShown) {
+            var btm = (parent.document.querySelector(".layout__fixed-submenu")) ? "56px" : "0px";
+            setTimeout(function() {
+                mobilePullerWrapper.style.bottom = btm;
+            }, 300);
+
+            /*AFTER EASEIN 1s*/
+            setTimeout(function() {
+                countDownInterval()
+            }, 1000);
+        }
+    }
+
+    function isPortrait() {
+        var _orientationScreenAPI = (parent.screen.orientation || {}).type || parent.screen.mozOrientation || parent.screen.msOrientation;
+        var state = 0;
+        if (typeof _orientationScreenAPI !== "undefined") {
+            if (_orientationScreenAPI.match(/portrait/ig)) {
+                state = 1;
+            } else if (_orientationScreenAPI.match(/landscape/ig)) {
+                state = 0;
+            }
+
+        } else {
+            if (parent.navigator.userAgent.match(/(criOS)/ig) !== null) {
+                state = parent.document.documentElement.clientWidth < parent.document.documentElement.clientHeight ? 1 : 0;
+            } else {
+                state = parent.window.innerWidth < parent.window.innerHeight ? 1 : 0;
+            }
+        }
+
+        return state;
+    }
+
+    function countDownInterval() {
+        var countdownPuller = setInterval(function() {
+            if (mobilePullerCountdownStart > 0 && !mobilePullerCloseStatus && isPortrait()) {
+                hideOnesignal();
+                if (mobilePullerCountdownStart == 1) {
+                    mobilePullercCanClose = true;
+                    var closeimg = '<img src="https://cdns.klimg.com/d.kapanlaginetwork.com/banner/preview/2019/08/20/close.png?9080">';
+                    mobilePullerBtnClose.innerHTML = closeimg;
+                    clearInterval(countdownPuller);
+                    mobilePullerBtnClose.addEventListener("click", mobilePullerDissmised);
+                    setAutoClose(0);
+                } else {
+                    mobilePullerCountdownStart--;
+                    mobilePullerBtnClose.querySelector("p").textContent = mobilePullerCountdownStart;
+                }
+            }
+        }, 1000);
+    }
+
+    function setAutoClose(time_) {
+        setTimeout(() => {
+            mobilePullerClose();
+        }, 3000);
+    }
+
+    function mobilePullerClose() {
+        let videoEmbedFrames = parent.window.frames.videoEmbed;
+        if (mobilePullercCanClose) {
+            mobilePullerWrapper.style.bottom = "-350px";
+            if (mobilePullercWidgetRamadhan) {
+                mobilePullercWidgetRamadhan.style.display = "block";
+            }
+
+            if (parent.document.querySelector(".cek-fakta__popup")) {
+                parent.document.querySelector(".cek-fakta__popup").style.top = "top: calc(-261px + 100vh);";
+                parent.window.removeEventListener("scroll", scrollMobilePulllerCekFakta);
+            }
+
+            setTimeout(function() {
+                window.frameElement.parentElement.remove()
+            }, 1100)
+
+            /*BRILIO OVERLAY VIDEO - DAILYMOTION*/
+            let klyObject = parent.kmklabs ? parent.kmklabs : parent.kly;
+            if (typeof klyObject.showdm == "function") {
+                klyObject.showdm();
+            }
+        }
+
+        videoEmbedFrames && videoEmbedFrames.postMessage("play", "*");
+    }
+
+    /*REMOVE ALL JUNK EVENT AND COMPLETELY HIDE COMPONENT */
+    function mobilePullerDissmised() {
+        /* bottom 1s ease-in-out */
+        mobilePullerClose();
+        setTimeout(() => {
+            mobilePullerWrapper.style.setProperty('display', 'none', 'important');
+            parent.window.removeEventListener("orientationchange", mobilePullerOrieantation);
+            parent.window.removeEventListener("scroll", scrollMobilePulller);
+            parent.window.removeEventListener("scroll", scrollMobilePulllerCekFakta);
+            mobilePullerClickLP.removeEventListener("click", mobilePullerLandingPage);
+            mobilePullerBtnClose.removeEventListener("click", mobilePullerDissmised);
+        }, 1000);
+    }
+
+    function mobilePullerOrieantation() {
+        if (isPortrait()) {
+            if (mobilePullerShown) {
+                var btm = (parent.document.querySelector(".layout__fixed-submenu")) ? "56px" : "0px";
+                mobilePullerWrapper.style.bottom = btm;
+                countDownInterval();
+            }
+        } else {
+            if (mobilePullerShown) {
+                mobilePullerWrapper.style.bottom = "-350px";
+            }
+        }
+    }
+
+    function hideOnesignal() {
+        setTimeout(function() {
+            var onesignal = parent.document.getElementById("onesignal-popover-container"),
+                onesignalMDK = parent.document.querySelector("#onesignal-bell-container");
+            if (onesignal) {
+                onesignal.style.display = 'none';
+            }
+            if (onesignalMDK) {
+                onesignalMDK.style.setProperty('display', 'none', 'important');
+            }
+        }, 2000);
+    }
+</script>
