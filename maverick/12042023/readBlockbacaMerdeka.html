@@ -326,7 +326,6 @@
                 googletag.cmd.push(function() {
                     //create HSE ads container
                     MavDefineHSEAds();
-                    showHSEAds();
                     // This listener is called when an ad response has been received
                     // for a slot.
                     // This listener is called when a creative iframe load event fires.
@@ -352,7 +351,7 @@
                     if (document.querySelector(".section--dtparablock")) {
                         document.querySelector(".btn--readarticle").classList.contains("hidden") ? showHSEAds() : console.log("NOT FOUND");
                     }
-
+                    showHSEAds();
                     isFirstLoad = false;
                 });
             }
