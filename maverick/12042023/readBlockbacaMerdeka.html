@@ -536,23 +536,23 @@
 
             // readArticle.addEventListener("click", showHSEAds);
 
-            let observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutationRecord) {
-                    var isHidden = mutationRecord.target.classList.contains("hidden");
-                    if (isHidden) {
-                        masthead.classList.remove("hidden");
-                        bottomfrm && bottomfrm.classList.remove("hidden");
-                    } else {
-                        masthead.classList.add("hidden");
-                        bottomfrm && bottomfrm.classList.add("hidden");
-                    };
-                })
-            });
+            // let observer = new MutationObserver(function(mutations) {
+            //     mutations.forEach(function(mutationRecord) {
+            //         var isHidden = mutationRecord.target.classList.contains("hidden");
+            //         if (isHidden) {
+            //             masthead.classList.remove("hidden");
+            //             bottomfrm && bottomfrm.classList.remove("hidden");
+            //         } else {
+            //             masthead.classList.add("hidden");
+            //             bottomfrm && bottomfrm.classList.add("hidden");
+            //         };
+            //     })
+            // });
 
-            observer.observe(buttonReadmore, {
-                attributes: true,
-                attributeFilter: ['style', 'class']
-            });
+            // observer.observe(buttonReadmore, {
+            //     attributes: true,
+            //     attributeFilter: ['style', 'class']
+            // });
             isHSEcreated = true;
         }
 
