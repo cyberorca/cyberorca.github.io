@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        /* Style the ad */
+        
+        #ad {
+            /* Position the ad fixed at the bottom of the screen */
+            position: fixed;
+            bottom: 0;
+            /* Set the initial dimensions of the ad */
+            width: 320px;
+            height: 50px;
+            /* Use a CSS transition to create a smooth transition */
+            transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+            /* Set the z-index to ensure the ad is above other elements */
+            z-index: 1000;
+        }
+        /* Create a sparkle animation */
+        
+        @keyframes sparkle {
+            /* Start with no sparkles */
+            0% {
+                box-shadow: none;
+            }
+            /* Add sparkles gradually over time */
+            100% {
+                box-shadow: 0 0 5px 2px white, 0 0 10px 5px white, 0 0 15px 10px white;
+            }
+        }
+        /* Apply the sparkle animation to the ad */
+        
+        #ad.expanded {
+            animation: sparkle 0.5s ease-in-out infinite;
+        }
+    </style>
+    <!-- Create a <div> element for the ad -->
+    <div id="ad">
+        <img src="https://via.placeholder.com/300x250" alt="Advertisement">
+    </div>
+
+    <script>
+        // Get the ad element
+        var ad = document.getElementById('ad');
+
+        // Add a scroll event listener to the window
+        window.addEventListener('scroll', function() {
+            // If the user has scrolled past 100 pixels from the top of the screen,
+            // change the dimensions of the ad to 300x250
+            if (window.scrollY > 100) {
+                ad.style.width = '300px';
+                ad.style.height = '250px';
+            }
+        });
+    </script>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam in consectetur accusantium recusandae! Minima dolorem necessitatibus voluptatum consectetur dicta numquam laudantium perferendis nemo suscipit eligendi dolores eos labore, consequatur
+        molestias?</p>
+</body>
+
+</html>

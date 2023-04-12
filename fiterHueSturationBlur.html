@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Create a <video> element to display the camera stream -->
+    <video id="camera" autoplay></video>
+
+    <!-- Create a <input type="range"> element for the hue control -->
+    <input type="range" id="hue-control" min="0" max="360" value="0">
+
+    <!-- Create a <input type="range"> element for the saturation control -->
+    <input type="range" id="saturation-control" min="0" max="100" value="100">
+
+    <style>
+        /* Style the video */
+        
+        #camera {
+            /* Set the filter CSS property to apply the hue and saturation filters */
+            filter: hue-rotate(0deg) saturate(100%);
+        }
+    </style>
+
+    <script>
+        // Get the video and control elements
+        var video = document.getElementById('camera');
+        var hueControl = document.getElementById('hue-control');
+        var saturationControl = document.getElementById('saturation-control');
+
+        // Request access to the user's camera
+        navigator.mediaDevices.getUserMedia({
+            video: true
+        }).then(function(stream) {
+            // Set the source of the video element
+            // to the stream from the user's camera
+            video.srcObject = stream;
+
+            // Add a change event listener to the hue control
+            hueControl.addEventListener('change', function() {
+                // Update the filter CSS property of the video
+                // with the current values of the hue and saturation controls
+                video.style.filter = 'hue-rotate(' + hueControl.value + 'deg) saturate(' + saturationControl.value + '%)';
+            });
+
+            // Add a change event listener to the saturation control
+            saturationControl.addEventListener('change', function() {
+                // Update the filter CSS property of the video
+                // with the current values of the hue and saturation controls
+                video.style.filter = 'hue-rotate(' + hueControl.value + 'deg) saturate(' + saturationControl.value + '%)';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

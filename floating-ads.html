@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Create a <div> element for the ad -->
+    <div id="ad">
+        <img src="ad.png" alt="Advertisement">
+    </div>
+
+    <style>
+        /* Style the ad */
+        
+        #ad {
+            /* Position the ad absolutely */
+            position: absolute;
+            /* Set the z-index to ensure the ad is above other elements */
+            z-index: 1000;
+            transition: top 0.2s ease-in-out, left 0.2s ease-in-out;
+        }
+    </style>
+
+    <script>
+        // Get the ad element
+        var ad = document.getElementById('ad');
+
+        // Add a mousemove event listener to the document
+        document.addEventListener('mousemove', function(e) {
+            // Get the dimensions of the ad
+            var adWidth = ad.offsetWidth;
+            var adHeight = ad.offsetHeight;
+
+            // Set the top and left CSS properties of the ad
+            // to the current cursor position, minus half the
+            // width and height of the ad
+            ad.style.top = e.pageY - (adHeight / 2) + 'px';
+            ad.style.left = e.pageX - (adWidth / 2) + 'px';
+        });
+    </script>
+
+</body>
+
+</html>
