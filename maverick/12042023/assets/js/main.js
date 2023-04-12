@@ -16,8 +16,8 @@ let options = {
 let swipers = [];
 const selector = document.querySelectorAll('.swiper--ads');
 for (var i = 0; i < selector.length; i++) {
-    selector[i].classList.add('swiperAds'+i);
-    swipers[i] = new Swiper('.swiperAds'+i, {
+    selector[i].classList.add('swiperAds' + i);
+    swipers[i] = new Swiper('.swiperAds' + i, {
         autoplay: {
             delay: 3000,
             stopOnLastSlide: true,
@@ -32,19 +32,19 @@ for (var i = 0; i < selector.length; i++) {
 
 const setScrollDirection = () => {
     if (scrollRoot.scrollTop > prevYPosition) {
-        if(currentIndex % 5 === 0){
+        if (currentIndex % 5 === 0) {
             // document.querySelector('.indicator-bullet-active').scrollIntoView({behavior: "smooth"});
-            indicators.scrollBy({ 
+            indicators.scrollBy({
                 top: indicators.clientHeight,
-                behavior: 'smooth' 
+                behavior: 'smooth'
             });
         }
 
     } else {
-        if((currentIndex + 1) % 5 === 0){
-            indicators.scrollBy({ 
+        if ((currentIndex + 1) % 5 === 0) {
+            indicators.scrollBy({
                 top: -indicators.clientHeight,
-                behavior: 'smooth' 
+                behavior: 'smooth'
             });
         }
     }
@@ -56,12 +56,12 @@ const setIndicator = () => {
     indicators.innerHTML = '';
     for (var i = 0; i < sections.length; i++) {
         var button = document.createElement('span');
-        
+
         button.classList.add('snap-always', 'shrink-0', 'indicator-bullet');
-        if(i === currentIndex){
+        if (i === currentIndex) {
             button.classList.add('indicator-bullet-active')
         }
-        
+
         // (function(i) {
         //     button.onclick = function() {
         //         sections[i].scrollIntoView();
@@ -86,7 +86,7 @@ const io = new IntersectionObserver((entries) => {
             document.body.setAttribute('data-theme', theme)
             document.body.setAttribute('data-sound', sound)
             entry.target.classList.add("is-visible");
-            
+
             currentIndex = elementIndices[sid];
 
 
@@ -95,7 +95,7 @@ const io = new IntersectionObserver((entries) => {
 
 
             for (var i = 0; i < selector.length; i++) {
-                if(entry.target.querySelector('.swiperAds'+i)){
+                if (entry.target.querySelector('.swiperAds' + i)) {
                     swipers[i].autoplay.start();
                 }
             }
@@ -116,61 +116,62 @@ const io = new IntersectionObserver((entries) => {
             var dtpara = document.querySelector('.dt-para');
             var dtparascroll = document.querySelector('.section--dtparablock .section-body');
             var infoScroll = document.querySelector('[data-theme=dt-parablock] .btn--infoScrollarticle')
-            if(dtpara){
-                
-                if(infoScroll){
-                    infoScroll.addEventListener("click", function(e){
-                        dtparascroll.scrollTo({top: dtparascroll.scrollTop += document.body.clientHeight, left: 0, behavior: 'smooth'});
+            if (dtpara) {
+
+                if (infoScroll) {
+                    infoScroll.addEventListener("click", function(e) {
+                        dtparascroll.scrollTo({ top: dtparascroll.scrollTop += document.body.clientHeight, left: 0, behavior: 'smooth' });
                         e.preventDefault();
                     })
                 }
 
-                if(currentIndex == 1){
+                if (currentIndex == 1) {
                     const selector = document.querySelectorAll('.section:nth-child(n+3)');
-                    selector.forEach(function(item){
+                    selector.forEach(function(item) {
                         item.classList.add('hidden')
                     })
                     infoScroll.style.display = "";
 
-                    dtparascroll.addEventListener('scroll', function(){
-                        if (dtparascroll.scrollTop + dtparascroll.clientHeight >= dtparascroll.scrollHeight - 200){
+                    dtparascroll.addEventListener('scroll', function() {
+                        if (dtparascroll.scrollTop + dtparascroll.clientHeight >= dtparascroll.scrollHeight - 200) {
                             infoScroll.style.display = "none";
-                            selector.forEach(function(item){
+                            selector.forEach(function(item) {
                                 item.classList.remove('hidden')
                             })
-                        }else{
-                            infoScroll.style.display = "" 
+                        } else {
+                            infoScroll.style.display = ""
                         }
                     });
-                }else{
-                    dtparascroll.scrollTo({top: 0, left: 0, behavior: 'instant'});
+                } else {
+                    dtparascroll.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                 }
             }
 
-            if (typeof MaverickLabVisibleSection === "function"){ 
+            if (typeof MaverickLabVisibleSection === "function") {
                 MaverickLabVisibleSection(entry, io, currentIndex)
+                MavMakingAdsRequest(entry, io);
             }
 
             mediaplay(entry)
 
             //swipeup
             const overlaySwipeup = document.querySelector('.overlay-swipeup');
-            if(overlaySwipeup){
+            if (overlaySwipeup) {
                 currentIndex != 0 ? overlaySwipeup.classList.add('current') : overlaySwipeup.classList.remove('current')
             }
 
             //tagline
             const headerTagline = document.querySelector('.header-tagline:not(.hidden)');
-            if(headerTagline){
-                currentIndex != 0 ? headerTagline.style.display= "none" : headerTagline.style.display= "" 
+            if (headerTagline) {
+                currentIndex != 0 ? headerTagline.style.display = "none" : headerTagline.style.display = ""
             }
 
             //ellipsis
             const ellipsisBtn = entry.target.querySelector('.dots-btn.active');
-            if(ellipsisBtn){
+            if (ellipsisBtn) {
                 ellipsisBtn.click();
             }
-            
+
 
         } else {
             entry.target.classList.remove("is-visible");
@@ -180,10 +181,10 @@ const io = new IntersectionObserver((entries) => {
                 item.autoplay.stop();
             });
 
-            if (typeof MaverickLabInVisibleSection === "function"){ 
+            if (typeof MaverickLabInVisibleSection === "function") {
                 MaverickLabInVisibleSection(entry, io, currentIndex)
             }
-           
+
             mediapause(entry)
 
         }
@@ -195,16 +196,14 @@ const io = new IntersectionObserver((entries) => {
 
 var elementIndices = {};
 var backtop = document.querySelector('.backtop');
-if(backtop !== null)
-{
+if (backtop !== null) {
     backtop.addEventListener("click", function(e) {
         sections[0].scrollIntoView();
         e.preventDefault();
     });
 }
 
-function initSection()
-{
+function initSection() {
     for (var i = 0; i < sections.length; i++) {
         io.unobserve(sections[i]);
         var sid = (Math.random() + 1).toString(36).substring(7);
@@ -219,69 +218,70 @@ function initSection()
 function mediaplay(entry) {
 
     const video = entry.target.querySelector('video')
-    if(video){
-        setTimeout(function(){ 
-            video.play() 
-        },300)
+    if (video) {
+        setTimeout(function() {
+            video.play()
+        }, 300)
     }
 
     var videoIframe = entry.target.querySelector('iframe');
 
-    function played(){
+    function played() {
 
         var itemYT = entry.target.querySelector('iframe[src^="https://www.youtube.com/embed/"]');
 
-        function autoPlayYT(){
-            setTimeout(function(){ 
-                itemYT.addEventListener('load', autoPlayYT);   
-                itemYT.contentWindow.postMessage('{"event":"command", "func":"playVideo", "args":""}', '*'); 
-            },300);
-        
+        function autoPlayYT() {
+            setTimeout(function() {
+                itemYT.addEventListener('load', autoPlayYT);
+                itemYT.contentWindow.postMessage('{"event":"command", "func":"playVideo", "args":""}', '*');
+            }, 300);
+
         }
-        function autoPlayEmbed(){
-            setTimeout(function(){ 
-                videoIframe.addEventListener('load', autoPlayEmbed);   
-                videoIframe.contentWindow.postMessage('ads.play', "*");   
+
+        function autoPlayEmbed() {
+            setTimeout(function() {
+                videoIframe.addEventListener('load', autoPlayEmbed);
+                videoIframe.contentWindow.postMessage('ads.play', "*");
                 videoIframe.contentWindow.postMessage('vidio.playback.play', '*');
                 videoIframe.contentWindow.postMessage('enamplus.playback.play', '*');
-            },300);
+            }, 300);
         };
-        
-        if(itemYT){
-            if(!itemYT.src.includes('?enablejsapi=1')){
-               var embedSection =  entry.target.querySelector('.embed-yt');
-               var embedHorizontal =  entry.target.querySelector('.video-horizontal');
-               itemYT.src += '?enablejsapi=1&mute=1';
-               if(embedSection){
-                   itemYT.src += '&controls=0';
-               }
-               if(embedSection || embedHorizontal){
-                   autoPlayYT();
-               }
-            }else{
+
+        if (itemYT) {
+            if (!itemYT.src.includes('?enablejsapi=1')) {
+                var embedSection = entry.target.querySelector('.embed-yt');
+                var embedHorizontal = entry.target.querySelector('.video-horizontal');
+                itemYT.src += '?enablejsapi=1&mute=1';
+                if (embedSection) {
+                    itemYT.src += '&controls=0';
+                }
+                if (embedSection || embedHorizontal) {
+                    autoPlayYT();
+                }
+            } else {
                 autoPlayYT();
             }
-        }else{
+        } else {
             autoPlayEmbed();
         }
     }
 
 
-    if(videoIframe){
-        if(videoIframe.getAttribute('data-src')) {
-            if(!videoIframe.src) {
+    if (videoIframe) {
+        if (videoIframe.getAttribute('data-src')) {
+            if (!videoIframe.src) {
                 videoIframe.setAttribute('src', videoIframe.getAttribute('data-src'));
                 const isMobile = /iPhone|Android/i.test(navigator.userAgent);
                 if (isMobile) {
-                    if(document.querySelector('.muted')){
+                    if (document.querySelector('.muted')) {
                         document.querySelector('.muted').click()
                     }
                 }
                 played();
-            }else{
+            } else {
                 played();
             }
-        }else{
+        } else {
             played();
         }
     }
@@ -290,12 +290,12 @@ function mediaplay(entry) {
 function mediapause(entry) {
 
     var videoIframe = document.querySelectorAll('iframe');
-    if(videoIframe){
+    if (videoIframe) {
         videoIframe.forEach(function(item) {
             var itemYT = entry.target.querySelector('iframe[src^="https://www.youtube.com/embed/"]')
-            if(itemYT){
-                if(itemYT.src.includes('?enablejsapi=1')){
-                    item.contentWindow.postMessage('{"event":"command", "func":"pauseVideo", "args":""}', '*'); 
+            if (itemYT) {
+                if (itemYT.src.includes('?enablejsapi=1')) {
+                    item.contentWindow.postMessage('{"event":"command", "func":"pauseVideo", "args":""}', '*');
                 }
             }
             item.contentWindow.postMessage('ads.pause', "*");
@@ -305,69 +305,68 @@ function mediapause(entry) {
     }
 
     const videos = document.querySelectorAll('video')
-    if(videos){
-        Array.prototype.forEach.call(videos, function(video){
+    if (videos) {
+        Array.prototype.forEach.call(videos, function(video) {
             video.pause();
         });
-    } 
+    }
 
 }
 
 
-function initVideos()
-{
+function initVideos() {
     // videodefer & unmute
     let btnUnmute = document.querySelectorAll('.btn--unmute');
     let videos = document.querySelectorAll('video');
     let videoIframe = document.querySelectorAll('iframe');
-   
-    if(btnUnmute){
+
+    if (btnUnmute) {
         btnUnmute.forEach(function(item) {
-            item.addEventListener("click", function(e){
+            item.addEventListener("click", function(e) {
                 this.closest('body').querySelectorAll('.btn--unmute').forEach(function(item) {
                     item.classList.toggle('muted');
                 });
-                if(this.classList.contains('muted')){
-                    videoIframe.forEach(function(item) { 
-                        if(item.src.includes('?enablejsapi=1')){
+                if (this.classList.contains('muted')) {
+                    videoIframe.forEach(function(item) {
+                        if (item.src.includes('?enablejsapi=1')) {
                             item.contentWindow.postMessage('{"event":"command", "func":"unMute", "args":""}', '*');
                         }
                         item.contentWindow.postMessage('ads.unMute', "*");
                         item.contentWindow.postMessage('vidio.playback.unmute', '*');
                         item.contentWindow.postMessage('enamplus.playback.unmute', '*');
                     });
-                    Array.prototype.forEach.call(videos, function(video){
+                    Array.prototype.forEach.call(videos, function(video) {
                         video.muted = false;
                     });
-                }else{
-                    videoIframe.forEach(function(item) { 
-                        if(item.src.includes('?enablejsapi=1')){
-                            item.contentWindow.postMessage( '{"event":"command", "func":"mute", "args":""}', '*');
+                } else {
+                    videoIframe.forEach(function(item) {
+                        if (item.src.includes('?enablejsapi=1')) {
+                            item.contentWindow.postMessage('{"event":"command", "func":"mute", "args":""}', '*');
                         }
                         item.contentWindow.postMessage('ads.mute', "*");
                         item.contentWindow.postMessage('vidio.playback.mute', '*');
                         item.contentWindow.postMessage('enamplus.playback.mute', '*');
                     });
-                    Array.prototype.forEach.call(videos, function(video){
+                    Array.prototype.forEach.call(videos, function(video) {
                         video.muted = true;
                     });
                 }
                 e.preventDefault();
             });
         });
-    }   
+    }
     // mediapause(); 
 }
 
 initSection();
 initVideos();
 
-function dateLocal(locale){
-    const date= document.querySelectorAll('time');
-    if(date){
+function dateLocal(locale) {
+    const date = document.querySelectorAll('time');
+    if (date) {
         date.forEach(function(item) {
             var datetime = item.getAttribute("datetime");
-            if(datetime){
+            if (datetime) {
                 item.innerHTML = moment.utc(datetime).locale(locale).fromNow();
             }
         });
@@ -375,12 +374,12 @@ function dateLocal(locale){
 }
 dateLocal('id')
 
-document.addEventListener('maverick:locale', function(e){ 
+document.addEventListener('maverick:locale', function(e) {
     dateLocal(e.detail)
 }, false);
 
 //event
-document.addEventListener('maverick:reinit', function(){ 
+document.addEventListener('maverick:reinit', function() {
     sections = document.querySelectorAll("[data-section]");
     initSection();
     initVideos();
@@ -391,26 +390,26 @@ let selectSwitch = document.querySelector('.switchTheme-click');
 let selectOption = document.querySelectorAll(".switchTheme-option li a");
 let hour = (new Date).getHours();
 
-if( selectSwitch ){
+if (selectSwitch) {
     selectSwitch.addEventListener("click", (e) => {
         e.currentTarget.classList.toggle('is-active');
-        if(e.currentTarget.classList.contains('is-active')){
+        if (e.currentTarget.classList.contains('is-active')) {
             document.querySelector('.switchTheme-option').classList.add('open');
             for (var i = 0; i < selectOption.length; i++) {
                 selectOption[i].addEventListener('click', function() {
-                    
+
                     let value = this.dataset.value;
                     let valueHtml = this.querySelector('.icon-theme').innerHTML
 
                     document.querySelector(".switchTheme-option li.active").classList.remove("active");
                     this.parentNode.classList.add('active');
                     selectSwitch.innerHTML = valueHtml;
-                    
-                    if(value === 'darkmode'){
+
+                    if (value === 'darkmode') {
                         document.documentElement.classList.add('dark')
-                    } else if (value = 'lightmode'){
+                    } else if (value = 'lightmode') {
                         document.documentElement.classList.remove('dark')
-                    }else{
+                    } else {
                         document.documentElement.classList.remove('dark')
                         if (hour >= 24 && hour <= 4) {
                             document.documentElement.classList.add('dark')
@@ -419,7 +418,7 @@ if( selectSwitch ){
 
                 });
             }
-        }else{
+        } else {
             document.querySelector('.switchTheme-option').classList.remove('open');
         }
         e.preventDefault();
@@ -431,11 +430,11 @@ if( selectSwitch ){
 }
 
 
-window.addEventListener('click', function(e){   
-    if (!selectSwitch.contains(e.target)){
+window.addEventListener('click', function(e) {
+    if (!selectSwitch.contains(e.target)) {
         selectSwitch.classList.remove('is-active');
         document.querySelector('.switchTheme-option').classList.remove('open');
-    } 
+    }
 });
 
 
@@ -443,22 +442,22 @@ window.addEventListener('click', function(e){
 const toggleOpen = document.querySelectorAll("[data-toggle]");
 const toggleClose = document.querySelectorAll("[data-toggle-close]");
 
-toggleOpen.forEach(function (t, i) {
+toggleOpen.forEach(function(t, i) {
     t.addEventListener('click', function(e) {
         const attr = this.getAttribute('data-toggle');
         this.classList.toggle('is-active');
-        if(this.classList.contains('is-active')){
+        if (this.classList.contains('is-active')) {
 
             document.body.classList.add('overflow-hidden');
-            document.querySelector('[data-toggle-open="'+ attr +'"]').classList.add('open');
-        }else{
+            document.querySelector('[data-toggle-open="' + attr + '"]').classList.add('open');
+        } else {
             document.body.classList.remove('overflow-hidden');
-            document.querySelector('[data-toggle-open="'+ attr +'"]').classList.remove('open');
+            document.querySelector('[data-toggle-open="' + attr + '"]').classList.remove('open');
         }
         e.preventDefault();
     });
 });
-toggleClose.forEach(function (t, i) {
+toggleClose.forEach(function(t, i) {
     t.addEventListener('click', function(e) {
         document.body.classList.remove('overflow-hidden');
         document.querySelector('[data-toggle]').classList.remove('is-active');
@@ -468,20 +467,20 @@ toggleClose.forEach(function (t, i) {
 });
 
 //animate off chrome
-if(navigator.userAgent.match('CriOS')){ 
+if (navigator.userAgent.match('CriOS')) {
     const target = document.body;
-    target.addEventListener('touchstart',(event)=>{
+    target.addEventListener('touchstart', (event) => {
         e.preventDefault();
     });
-   
-}     
+
+}
 
 // //readblockBaca
 // var dtpara = document.querySelector('.dt-para');
 // if(dtpara){
 //     const btnReadmore = document.querySelector(".btn--readarticle");
 //     const btnSkipread = document.querySelectorAll(".btn--skiparticle");
-    
+
 //     var dtmasthead = document.querySelector('.masthead')?.clientHeight;
 //     var dtbottomframe = document.querySelector('.bottomframe')?.clientHeight;
 //     var dtparaheight = document.querySelector('.dt-para').clientHeight;
@@ -533,10 +532,10 @@ if(navigator.userAgent.match('CriOS')){
 //     });
 // });
 const dropdown = document.querySelectorAll("[data-submenu]");
-dropdown.forEach(function (t, i) {
+dropdown.forEach(function(t, i) {
     t.addEventListener('click', function(e) {
         const attr = this.getAttribute('data-submenu');
-        const attrTarget = document.querySelector('[data-submenu-open="'+ attr +'"]');
+        const attrTarget = document.querySelector('[data-submenu-open="' + attr + '"]');
 
         this.classList.toggle('is-active');
         this.classList.contains('is-active') ? attrTarget.classList.add('open') : attrTarget.classList.remove('open')
@@ -545,13 +544,13 @@ dropdown.forEach(function (t, i) {
 });
 
 const ellipsis = document.querySelectorAll('.line-clamp-str');
-if(ellipsis){
-    ellipsis.forEach(function(item){
+if (ellipsis) {
+    ellipsis.forEach(function(item) {
         var lineclamp = item.querySelectorAll('.line-clamp-str p');
 
         for (var i = 0; i < lineclamp.length; i++) {
             let sibling = lineclamp[0].nextElementSibling
-            while(sibling) {
+            while (sibling) {
                 sibling.classList.add('more-text', 'hidden');
                 sibling = sibling.nextElementSibling;
             }
@@ -564,8 +563,8 @@ if(ellipsis){
                 let hidden = paragraph.substr(maxlength, strlength);
                 lineclamp[0].innerHTML = visible + "<span class='dots'>...</span><span class='more-text hidden'>" + hidden + "</span>";
 
-                if(lineclamp[0].parentNode){
-                    lineclamp[0].parentNode.innerHTML = "<div class='line-clamp-str-body'>"+ lineclamp[0].parentNode.innerHTML +"</div><span class='dots-btn absolute bottom-0 inset-x-0 vh-text-sm font-semibold font-primary-1 block cursor-pointer pointer-events-auto'>More</span>";
+                if (lineclamp[0].parentNode) {
+                    lineclamp[0].parentNode.innerHTML = "<div class='line-clamp-str-body'>" + lineclamp[0].parentNode.innerHTML + "</div><span class='dots-btn absolute bottom-0 inset-x-0 vh-text-sm font-semibold font-primary-1 block cursor-pointer pointer-events-auto'>More</span>";
                 }
             }
 
@@ -573,18 +572,18 @@ if(ellipsis){
 
         function setClasses(el) {
             const isScrollable = el.scrollHeight > el.clientHeight;
-            
+
             if (!isScrollable) {
-              el.classList.remove('is-bottom-overflowing', 'is-top-overflowing');
-              return;
+                el.classList.remove('is-bottom-overflowing', 'is-top-overflowing');
+                return;
             }
-            
+
             const isScrolledToBottom = el.scrollHeight <= el.clientHeight + el.scrollTop;
             const isScroledlToTop = el.scrollTop === 0;
             el.classList.toggle('is-bottom-overflowing', !isScrolledToBottom);
             el.classList.toggle('is-top-overflowing', !isScroledlToTop);
         }
-          
+
         item.querySelector('.line-clamp-str-body').addEventListener('scroll', (e) => {
             const el = e.currentTarget;
             setClasses(el);
@@ -597,19 +596,19 @@ if(ellipsis){
             var targetDots = targetParent.querySelector('.dots')
             var targetMoretext = targetParent.querySelectorAll('.more-text');
             target.classList.toggle('active');
-            if(target.classList.contains('active')){
+            if (target.classList.contains('active')) {
                 target.innerHTML = 'Less';
                 targetParent.classList.add('open');
                 targetDots.classList.add('hidden');
-                targetMoretext.forEach(function(item){
+                targetMoretext.forEach(function(item) {
                     item.classList.remove('hidden')
                 })
                 targetParent.querySelector('.line-clamp-str-body').scrollTo(0, 0);
-            }else{
+            } else {
                 target.innerHTML = 'More';
                 targetParent.classList.remove('open');
                 targetDots.classList.remove('hidden');
-                targetMoretext.forEach(function(item){
+                targetMoretext.forEach(function(item) {
                     item.classList.add('hidden')
                 })
             }
@@ -651,9 +650,9 @@ for (var i = 0; i < popupAds.length; i++) {
     popupAds[i].addEventListener('click', function(e) {
         const target = this.getAttribute('data-popup')
         document.querySelector('[data-scroller]').style.overflow = 'hidden';
-        document.querySelector('[data-popup-open='+target+']').classList.add('open');  
-        document.querySelector('[data-popup-open='+target+'] [data-section-ads]:first-child').scrollIntoView();
-        document.querySelector('[data-popup-open='+target+'] [data-section-ads]:first-child').classList.add('is-visible');  
+        document.querySelector('[data-popup-open=' + target + ']').classList.add('open');
+        document.querySelector('[data-popup-open=' + target + '] [data-section-ads]:first-child').scrollIntoView();
+        document.querySelector('[data-popup-open=' + target + '] [data-section-ads]:first-child').classList.add('is-visible');
     });
 }
 const popupAdsClose = document.querySelectorAll('[data-popup-close]');
@@ -661,9 +660,9 @@ for (var i = 0; i < popupAdsClose.length; i++) {
     popupAdsClose[i].addEventListener('click', function(e) {
         const target = this.getAttribute('data-popup-close');
         document.querySelector('[data-scroller]').style.overflow = '';
-        document.querySelector('[data-popup-open='+target+']').classList.remove('open');
-        document.querySelector('[data-popup-open='+target+'] [data-section-ads]:first-child').scrollIntoView();
-        document.querySelector('[data-popup-open='+target+'] [data-section-ads].is-visible').classList.remove('is-visible');  
+        document.querySelector('[data-popup-open=' + target + ']').classList.remove('open');
+        document.querySelector('[data-popup-open=' + target + '] [data-section-ads]:first-child').scrollIntoView();
+        document.querySelector('[data-popup-open=' + target + '] [data-section-ads].is-visible').classList.remove('is-visible');
 
         // const skipSection = this.closest('[data-section]').getAttribute('data-section')
         // const skipSectionSplit = skipSection.substr(7);
@@ -678,15 +677,14 @@ const shareButton = document.querySelector('.btn--share');
 const shareDialog = document.querySelector('.shareModal');
 const shareDialogClose = document.querySelector('.shareModal-close');
 
-if(shareButton)
-{
+if (shareButton) {
     shareButton.addEventListener('click', event => {
 
         let bodyTheme = document.body.getAttribute('data-theme');
         let title = document.title
         let text = document.querySelector('meta[name="description"]').content
         let url = window.location.href;
-        let location = (window?.kly?.gtm?.pageType == "ReadPage") ? 'readpage' : 'feed';
+        let location = (window ? .kly ? .gtm ? .pageType == "ReadPage") ? 'readpage' : 'feed';
 
         if (bodyTheme == 'dt-headline' || bodyTheme == 'dt-parablock') {
             title = document.querySelector('h1.dt-desc-title').textContent.trim()
@@ -695,9 +693,9 @@ if(shareButton)
             location = 'readpage'
         } else {
             let target = document.querySelector('section.is-visible')
-            title = target.querySelector('h2.article-title')?.textContent.trim() || document.title
-            text = target.querySelector('div.article-paragraph')?.textContent.trim()
-            url = target.querySelector('h2.article-title a')?.getAttribute('href') || window.location.href
+            title = target.querySelector('h2.article-title') ? .textContent.trim() || document.title
+            text = target.querySelector('div.article-paragraph') ? .textContent.trim()
+            url = target.querySelector('h2.article-title a') ? .getAttribute('href') || window.location.href
             location = 'feed'
         }
 
@@ -717,13 +715,12 @@ if(shareButton)
         } else {
             alert("Your Browser doesn't support Web Share API");
             //fordestop
-                //shareDialog.classList.add('is-open');
+            //shareDialog.classList.add('is-open');
         }
     });
 }
 
-if(shareDialogClose)
-{
+if (shareDialogClose) {
     shareDialogClose.addEventListener('click', event => {
         shareDialog.classList.remove('is-open');
     });
@@ -731,14 +728,10 @@ if(shareDialogClose)
 
 var shareCopyButton = document.querySelector('.shareModal-link-copy');
 var shareCopyInput = document.querySelector('.shareModal-link-url');
-if( shareCopyButton )
-{
+if (shareCopyButton) {
     shareCopyButton.addEventListener('click', function(e) {
         shareCopyInput.select();
         shareCopyInput.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(shareCopyInput.value);
     });
 }
-
-
-    
