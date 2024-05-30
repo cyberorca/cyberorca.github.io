@@ -1,6 +1,4 @@
 # main links
-- name : Testing
-  link : /desktop-showbiz-detail.html
 main:
   - title: "Quick-Start Guide"
     url: /desktop-showbiz-detail.html
@@ -12,3 +10,5 @@ main:
     url: /collection-archive/
   - title: "Sitemap"
     url: /sitemap/
+  - name : Testing
+    link : /desktop-showbiz-detail.html
