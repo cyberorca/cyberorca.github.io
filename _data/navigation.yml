@@ -10,5 +10,5 @@ main:
     url: /collection-archive/
   - title: "Sitemap"
     url: /sitemap/
-  - name : Testing
-    link : /desktop-showbiz-detail.html
+  - name: Testing
+    link: /desktop-showbiz-detail.html

@@ -682,7 +682,7 @@
                 }
                 requestManager.adserverRequestSent = true;
                 googletag.cmd.push(function() {
-                    googletag.pubads().refresh();
+                    googletag.pubads().refresh([window.DS.slot1, window.DS.slot2, window.DS.slot3, window.DS.slot4]);
                 });
             }
 
@@ -880,9 +880,11 @@
                     ]
                 }, function(bids) {
                     googletag.cmd.push(function() {
+
                         apstag.setDisplayBids();
                         requestManager.aps = true; // signals that APS request has completed
                         biddersBack(); // checks whether both APS and Prebid have returned
+                        console.log("APS TRIGGER!");
                     });
                 });
 
@@ -891,9 +893,10 @@
                     pbjs.requestBids({
                         bidsBackHandler: function() {
                             googletag.cmd.push(function() {
-                                pbjs.setTargetingForGPTAsync();
+                                pbjs.setTargetingForGPTAsync(['/92351202/WMA_ROS_300x250_2', '/92351202/WMA_ROS_300x250_1', '/92351202/WMA_ROS_300x250', '/92351202/WMA_ROS_160x600']);
                                 requestManager.prebid = true; // signals that Prebid request has completed
                                 biddersBack(); // checks whether both APS and Prebid have returned
+                                console.log("PREBID TRIGGER!");
                             })
                         }
                     });
@@ -902,12 +905,14 @@
 
             // initiate bid request
             window.setInterval(function() {
-                if (requestManager.adserverRequestSent && requestManager.aps && requestManager.prebid) {
-                    requestManager.adserverRequestSent = false;
-                    requestManager.aps = false;
-                    requestManager.prebid = false;
-                }
-                console.log("REFRESH INTERVAL", requestManager);
+                console.log("REFRESH INTERVAL 1", requestManager);
+
+                requestManager.adserverRequestSent = false;
+                requestManager.aps = false;
+                requestManager.prebid = false;
+
+                console.log("REFRESH INTERVAL 2", requestManager);
+
                 requestHeaderBids();
             }, REFRESH_TIMER);
 
