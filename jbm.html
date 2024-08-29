@@ -1,0 +1,1160 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
+    <script async src="//whatismyspiritanimal.com/prebid8.7.0.js"></script>
+    <script>
+        //load the Amazon UAM apstag.js library
+        ! function(a9, a, p, s, t, A, g) {
+            if (a[a9]) return;
+
+            function q(c, r) {
+                a[a9]._Q.push([c, r])
+            }
+            a[a9] = {
+                init: function() {
+                    q("i", arguments)
+                },
+                fetchBids: function() {
+                    q("f", arguments)
+                },
+                setDisplayBids: function() {},
+                targetingKeys: function() {
+                    return []
+                },
+                _Q: []
+            };
+            A = p.createElement(s);
+            A.async = !0;
+            A.src = t;
+            g = p.getElementsByTagName(s)[0];
+            g.parentNode.insertBefore(A, g)
+        }("apstag", window, document, "script", "//c.amazon-adsystem.com/aax2/apstag.js");
+    </script>
+
+    <script>
+        var desktopSizes = [
+            [160, 600],
+            [300, 250],
+            [300, 600],
+            [728, 90],
+            [970, 90]
+        ];
+        var tabletSizes = [
+            [300, 250],
+            [300, 600],
+            [728, 90]
+        ];
+        var phoneSizes = [
+            [300, 250],
+            [300, 600]
+        ];
+        var allSizes = [
+            [160, 600],
+            [300, 250],
+            [300, 600],
+            [728, 90],
+            [970, 90]
+        ];
+
+        const FAILSAFE_TIMEOUT = 3000;
+        const PREBID_TIMEOUT = 1500;
+        const REFRESH_TIMER = 60000;
+
+        var requestManager = {
+            adserverRequestSent: false,
+            aps: false,
+            prebid: false
+        };
+        var adUnits = [{
+                code: '/92351202/WMA_ROS_160x600',
+                mediaTypes: {
+                    banner: {
+                        sizes: allSizes
+                    }
+                },
+                bids: [{
+                    bidder: 'ix',
+                    params: {
+                        siteId: '188956'
+                    }
+                }, {
+                    bidder: 'conversant',
+                    params: {
+                        site_id: '125453',
+                        secure: 1
+                    }
+                }]
+            }, {
+                code: '/92351202/WMA_ROS_300x250',
+                mediaTypes: {
+                    banner: {
+                        sizes: allSizes
+                    }
+                },
+                bids: [{
+                    bidder: 'ix',
+                    params: {
+                        siteId: '188956'
+                    }
+                }, {
+                    bidder: 'conversant',
+                    params: {
+                        site_id: '125453',
+                        secure: 1
+                    }
+                }]
+            }, {
+                code: '/92351202/WMA_ROS_300x250_1',
+                mediaTypes: {
+                    banner: {
+                        sizes: allSizes
+                    }
+                },
+                bids: [{
+                    bidder: 'ix',
+                    params: {
+                        siteId: '188956'
+                    }
+                }, {
+                    bidder: 'conversant',
+                    params: {
+                        site_id: '125453',
+                        secure: 1
+                    }
+                }]
+            }, {
+                code: '/92351202/WMA_ROS_300x250_2',
+                mediaTypes: {
+                    banner: {
+                        sizes: allSizes
+                    }
+                },
+                bids: [{
+                    bidder: 'ix',
+                    params: {
+                        siteId: '188956'
+                    }
+                }, {
+                    bidder: 'conversant',
+                    params: {
+                        site_id: '125453',
+                        secure: 1
+                    }
+                }]
+            }
+            // , {
+            //     code: '/92351202/WMA_ROS_300x250_3',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x250_4',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }]
+            // }
+            // , {
+            //     code: '/92351202/WMA_ROS_300x250_5',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x250_6',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x250_7',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x250_8',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x250_9',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x250_10',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x600_PS2',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x600_PS3',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x600_PS4',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_Permanent_Video_Player',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_300x600',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_Bottom',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_In_Content',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_Top',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_PS4',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_PS5',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_PS6',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_PS7',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_PS8',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_728x90_PS9',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_ROS_970x90_BelowNav',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }, {
+            //     code: '/92351202/WMA_Blog_728x90_Top_AboveMenu',
+            //     mediaTypes: {
+            //         banner: {
+            //             sizes: allSizes
+            //         }
+            //     },
+            //     bids: [{
+            //         bidder: 'ix',
+            //         params: {
+            //             siteId: '188956'
+            //         }
+            //     }, {
+            //         bidder: 'conversant',
+            //         params: {
+            //             site_id: '125453',
+            //             secure: 1
+            //         }
+            //     }]
+            // }
+        ];
+
+        //initialize the Amazon UAM apstag.js library on the page to allow bidding
+        apstag.init({
+            pubID: '58e1c87c-562d-4e29-97f2-285c5e6563c7', //enter your pub ID here as shown above, it must within quotes
+            adServer: 'googletag'
+        });
+
+        var pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        googletag.cmd.push(function() {
+            googletag.pubads().disableInitialLoad();
+        });
+
+        pbjs.que.push(function() {
+            pbjs.addAdUnits(adUnits);
+            pbjs.setConfig({
+                debug: false,
+                sizeConfig: [{
+                    'mediaQuery': '(min-width: 1025px)',
+                    'sizesSupported': desktopSizes,
+                    'labels': ['desktop']
+                }, {
+                    'mediaQuery': '(min-width: 768px) and (max-width: 1024px)',
+                    'sizesSupported': tabletSizes,
+                    'labels': ['tablet']
+                }, {
+                    'mediaQuery': '(min-width: 320px) and (max-width: 812px)',
+                    'sizesSupported': phoneSizes,
+                    'labels': ['phone']
+                }]
+            });
+
+
+            // pbjs.requestBids({
+            // bidsBackHandler: sendAdserverRequest,
+            // timeout: PREBID_TIMEOUT
+            //}); 
+
+        });
+
+        // function sendAdserverRequest() {
+        // if (pbjs.adserverRequestSent) return;
+        // pbjs.adserverRequestSent = true;
+        // googletag.cmd.push(function() {
+        // pbjs.que.push(function() {
+        // pbjs.setTargetingForGPTAsync();
+        // googletag.pubads().refresh();
+        //});
+        // });
+        // }
+
+        // in case PBJS doesn't load
+        // setTimeout(function() {
+        // sendAdserverRequest();
+        //}, FAILSAFE_TIMEOUT);
+
+
+
+        /** Executes a parallel auction with prebid **/
+        function executeParallelAuctionAlongsidePrebid() {
+
+            // when both APS and Prebid have returned, initiate ad request
+            function biddersBack() {
+                if (requestManager.aps && requestManager.prebid) {
+                    sendAdserverRequest();
+                }
+                return;
+            }
+
+            // sends adserver request
+            function sendAdserverRequest() {
+                if (requestManager.adserverRequestSent === true) {
+                    return;
+                }
+                requestManager.adserverRequestSent = true;
+                googletag.cmd.push(function() {
+                    googletag.pubads().refresh();
+                });
+            }
+
+            // sends bid request to APS and Prebid
+            function requestHeaderBids() {
+
+                // APS request
+                apstag.fetchBids({
+                    slots: [{
+                            slotID: 'wma-adunit1',
+                            slotName: '/92351202/WMA_ROS_160x600',
+                            sizes: [
+                                [160, 600],
+                                [300, 250]
+                            ]
+                        }, {
+                            slotID: 'wma-adunit2',
+                            slotName: '/92351202/WMA_ROS_300x250',
+                            sizes: [
+                                [300, 250],
+                                [320, 50]
+                            ]
+                        }, {
+                            slotID: 'wma-adunit3',
+                            slotName: '/92351202/WMA_ROS_300x250_1',
+                            sizes: [
+                                [300, 250]
+                            ]
+                        }, {
+                            slotID: 'wma-adunit4',
+                            slotName: '/92351202/WMA_ROS_300x250_2',
+                            sizes: [
+                                [300, 250]
+                            ]
+                        }, {
+                            slotID: 'wma-adunit5',
+                            slotName: '/92351202/WMA_ROS_300x250_3',
+                            sizes: [
+                                [300, 250]
+                            ]
+                        }, {
+                            slotID: 'wma-adunit6',
+                            slotName: '/92351202/WMA_ROS_300x250_4',
+                            sizes: [
+                                [300, 250]
+                            ]
+                        }
+                        // , {
+                        //     slotID: 'wma-adunit7',
+                        //     slotName: '/92351202/WMA_ROS_300x250_5',
+                        //     sizes: [
+                        //         [300, 250]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit8',
+                        //     slotName: '/92351202/WMA_ROS_300x250_6',
+                        //     sizes: [
+                        //         [300, 250]
+                        //     ]
+                        // }
+                        // , {
+                        //     slotID: 'wma-adunit9',
+                        //     slotName: '/92351202/WMA_ROS_300x250_7',
+                        //     sizes: [
+                        //         [300, 250]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit10',
+                        //     slotName: '/92351202/WMA_ROS_300x250_8',
+                        //     sizes: [
+                        //         [300, 250]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit11',
+                        //     slotName: '/92351202/WMA_ROS_300x250_9',
+                        //     sizes: [
+                        //         [300, 250]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit12',
+                        //     slotName: '/92351202/WMA_ROS_300x250_10',
+                        //     sizes: [
+                        //         [300, 250]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit13',
+                        //     slotName: '/92351202/WMA_ROS_300x600_PS2',
+                        //     sizes: [
+                        //         [300, 600]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit14',
+                        //     slotName: '/92351202/WMA_ROS_300x600_PS3',
+                        //     sizes: [
+                        //         [300, 600]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit15',
+                        //     slotName: '/92351202/WMA_ROS_300x600_PS4',
+                        //     sizes: [
+                        //         [300, 600]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit16',
+                        //     slotName: '/92351202/WMA_ROS_Permanent_Video_Player',
+                        //     sizes: [
+                        //         [300, 250]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit17',
+                        //     slotName: '/92351202/WMA_ROS_300x600',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [300, 600],
+                        //         [320, 50]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit18',
+                        //     slotName: '/92351202/WMA_ROS_728x90_Bottom',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit19',
+                        //     slotName: '/92351202/WMA_ROS_728x90_In_Content',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit20',
+                        //     slotName: '/92351202/WMA_ROS_728x90_Top',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit21',
+                        //     slotName: '/92351202/WMA_ROS_728x90_PS4',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit22',
+                        //     slotName: '/92351202/WMA_ROS_728x90_PS5',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit23',
+                        //     slotName: '/92351202/WMA_ROS_728x90_PS6',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit24',
+                        //     slotName: '/92351202/WMA_ROS_728x90_PS7',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit25',
+                        //     slotName: '/92351202/WMA_ROS_728x90_PS8',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit26',
+                        //     slotName: '/92351202/WMA_ROS_728x90_PS9',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit27',
+                        //     slotName: '/92351202/WMA_ROS_970x90_BelowNav',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [970, 90]
+                        //     ]
+                        // }, {
+                        //     slotID: 'wma-adunit28',
+                        //     slotName: '/92351202/WMA_Blog_728x90_Top_AboveMenu',
+                        //     sizes: [
+                        //         [300, 250],
+                        //         [728, 90]
+                        //     ]
+                        // }
+                    ]
+                }, function(bids) {
+                    googletag.cmd.push(function() {
+                        apstag.setDisplayBids();
+                        requestManager.aps = true; // signals that APS request has completed
+                        biddersBack(); // checks whether both APS and Prebid have returned
+                    });
+                });
+
+                // put prebid request here
+                pbjs.que.push(function() {
+                    pbjs.requestBids({
+                        bidsBackHandler: function() {
+                            googletag.cmd.push(function() {
+                                pbjs.setTargetingForGPTAsync();
+                                requestManager.prebid = true; // signals that Prebid request has completed
+                                biddersBack(); // checks whether both APS and Prebid have returned
+                            })
+                        }
+                    });
+                });
+            }
+
+            // initiate bid request
+            window.setInterval(function() {
+                if (requestManager.adserverRequestSent && requestManager.aps && requestManager.prebid) {
+                    requestManager.adserverRequestSent = false;
+                    requestManager.aps = false;
+                    requestManager.prebid = false;
+                }
+                console.log("REFRESH INTERVAL", requestManager);
+                requestHeaderBids();
+            }, REFRESH_TIMER);
+
+
+            // set failsafe timeout
+            window.setTimeout(function() {
+                sendAdserverRequest();
+            }, FAILSAFE_TIMEOUT);
+        };
+
+
+
+        //var slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24, slot25, slot26, slot27, slot28;
+
+        window.DS = {
+            slot1: {},
+            slot2: {},
+            slot3: {},
+            slot4: {},
+            slot5: {},
+            slot6: {},
+            slot7: {},
+            slot8: {},
+            slot9: {},
+            slot10: {},
+            slot11: {},
+            slot12: {},
+            slot13: {},
+            slot14: {},
+            slot15: {},
+            slot16: {},
+            slot17: {},
+            slot18: {},
+            slot19: {},
+            slot20: {},
+            slot21: {},
+            slot22: {},
+            slot23: {},
+            slot24: {},
+            slot25: {},
+            slot26: {},
+            slot27: {},
+            slot28: {}
+        }
+
+        googletag.cmd.push(function() {
+            window.DS.slot1 = googletag.defineSlot('/92351202/WMA_ROS_160x600', allSizes, 'wma-adunit1').addService(googletag.pubads());
+            window.DS.slot2 = googletag.defineSlot('/92351202/WMA_ROS_300x250', allSizes, 'wma-adunit2').addService(googletag.pubads());
+            window.DS.slot3 = googletag.defineSlot('/92351202/WMA_ROS_300x250_1', allSizes, 'wma-adunit3').addService(googletag.pubads());
+            window.DS.slot4 = googletag.defineSlot('/92351202/WMA_ROS_300x250_2', allSizes, 'wma-adunit4').addService(googletag.pubads());
+            // window.DS.slot5 = googletag.defineSlot('/92351202/WMA_ROS_300x250_3', allSizes, 'wma-adunit5').addService(googletag.pubads());
+            // window.DS.slot6 = googletag.defineSlot('/92351202/WMA_ROS_300x250_4', allSizes, 'wma-adunit6').addService(googletag.pubads());
+            // window.DS.slot7 = googletag.defineSlot('/92351202/WMA_ROS_300x250_5', allSizes, 'wma-adunit7').addService(googletag.pubads());
+            // window.DS.slot8 = googletag.defineSlot('/92351202/WMA_ROS_300x250_6', allSizes, 'wma-adunit8').addService(googletag.pubads());
+            // window.DS.slot9 = googletag.defineSlot('/92351202/WMA_ROS_300x250_7', allSizes, 'wma-adunit9').addService(googletag.pubads());
+            // window.DS.slot10 = googletag.defineSlot('/92351202/WMA_ROS_300x250_8', allSizes, 'wma-adunit10').addService(googletag.pubads());
+            // window.DS.slot11 = googletag.defineSlot('/92351202/WMA_ROS_300x250_9', allSizes, 'wma-adunit11').addService(googletag.pubads());
+            // window.DS.slot12 = googletag.defineSlot('/92351202/WMA_ROS_300x250_10', allSizes, 'wma-adunit12').addService(googletag.pubads());
+            // window.DS.slot13 = googletag.defineSlot('/92351202/WMA_ROS_300x600_PS2', allSizes, 'wma-adunit13').addService(googletag.pubads());
+            // window.DS.slot14 = googletag.defineSlot('/92351202/WMA_ROS_300x600_PS3', allSizes, 'wma-adunit14').addService(googletag.pubads());
+            // window.DS.slot15 = googletag.defineSlot('/92351202/WMA_ROS_300x600_PS4', allSizes, 'wma-adunit15').addService(googletag.pubads());
+            // window.DS.slot16 = googletag.defineSlot('/92351202/WMA_ROS_Permanent_Video_Player', allSizes, 'wma-adunit16').addService(googletag.pubads());
+            // window.DS.slot17 = googletag.defineSlot('/92351202/WMA_ROS_300x600', allSizes, 'wma-adunit17').addService(googletag.pubads());
+            // window.DS.slot18 = googletag.defineSlot('/92351202/WMA_ROS_728x90_Bottom', allSizes, 'wma-adunit18').addService(googletag.pubads());
+            // window.DS.slot19 = googletag.defineSlot('/92351202/WMA_ROS_728x90_In_Content', allSizes, 'wma-adunit19').addService(googletag.pubads());
+            // window.DS.slot20 = googletag.defineSlot('/92351202/WMA_ROS_728x90_Top', allSizes, 'wma-adunit20').addService(googletag.pubads());
+            // window.DS.slot21 = googletag.defineSlot('/92351202/WMA_ROS_728x90_PS4', allSizes, 'wma-adunit21').addService(googletag.pubads());
+            // window.DS.slot22 = googletag.defineSlot('/92351202/WMA_ROS_728x90_PS5', allSizes, 'wma-adunit22').addService(googletag.pubads());
+            // window.DS.slot23 = googletag.defineSlot('/92351202/WMA_ROS_728x90_PS6', allSizes, 'wma-adunit23').addService(googletag.pubads());
+            // window.DS.slot24 = googletag.defineSlot('/92351202/WMA_ROS_728x90_PS7', allSizes, 'wma-adunit24').addService(googletag.pubads());
+            // window.DS.slot25 = googletag.defineSlot('/92351202/WMA_ROS_728x90_PS8', allSizes, 'wma-adunit25').addService(googletag.pubads());
+            // window.DS.slot26 = googletag.defineSlot('/92351202/WMA_ROS_728x90_PS9', allSizes, 'wma-adunit26').addService(googletag.pubads());
+            // window.DS.slot27 = googletag.defineSlot('/92351202/WMA_ROS_970x90_BelowNav', allSizes, 'wma-adunit27').addService(googletag.pubads());
+            // window.DS.slot28 = googletag.defineSlot('/92351202/WMA_Blog_728x90_Top_AboveMenu', allSizes, 'wma-adunit28').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            // <?php 
+
+            //    $postID = (is_home() || is_front_page()) ? 'home' : get_the_ID(); 
+            //    $cats = get_the_category();
+            //    $categories = '"'. $cats[0]->cat_name .'"';
+            //    for ($i = 1; $i < count($cats); $i++) {$categories .= ', "' . $cats[$i]->cat_name . '"';}
+            // ?>
+            googletag.enableServices();
+
+            executeParallelAuctionAlongsidePrebid();
+        });
+
+
+
+        // slotRefreshArray = [slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24, slot25, slot26, slot27];
+
+        // Set the timer
+        // var REFRESH_TIMER = 60000;
+
+        // Run the interval funcion to fetch new bids and then call to the adserver.
+        // window.setInterval(function(){
+
+        // slotRefreshArray = [slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24, slot25, slot26, slot27];
+
+        // fetchHeaderBids(apstagSlotsForRefresh, adUnits, slotRefreshArray);
+
+        // }, REFRESH_TIMER);
+
+        // i am thinking of just calling executeParallelAuctionAlongsidePrebid() again here, but how do i pass the variables into it? prebid ad units, gam units and amazon slots?
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6848660437592142",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        .wall {
+            height: auto;
+        }
+        
+        .row {
+            display: flex;
+            border-top: 2px solid white;
+        }
+        
+        .row .brick {
+            flex-grow: 2;
+        }
+        
+        .row .brick:not(:last-child) {
+            border-right: 2px solid white;
+        }
+        
+        .row:nth-child(even)>.brick:first-child,
+        .row:nth-child(even)>.brick:last-child {
+            flex-grow: 1;
+        }
+        
+        .brick {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eee;
+            height: auto;
+            color: #fff;
+            font-family: Helvetica, sans-serif;
+            font-size: 12px;
+            max-width: max-content;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+                <a class="navbar-brand" href="#">JBM APS & PREBID INTEGRATION</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Parallel Ads Integration</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+
+            <div class="wall">
+                <div class="row">
+                    <div class="brick" id="wma-adunit1"></div>
+                    <div class="brick" id="wma-adunit2"></div>
+                    <div class="brick" id="wma-adunit3"></div>
+                    <div class="brick" id="wma-adunit4"></div>
+                </div>
+                <div class="row">
+                    <div class="brick" id="wma-adunit5"></div>
+                    <div class="brick" id="wma-adunit6"></div>
+                    <div class="brick" id="wma-adunit7"></div>
+                    <div class="brick" id="wma-adunit8"></div>
+                </div>
+                <div class="row">
+                    <div class="brick" id="wma-adunit9"></div>
+                    <div class="brick" id="wma-adunit10"></div>
+                    <div class="brick" id="wma-adunit11"></div>
+                    <div class="brick" id="wma-adunit12"></div>
+                </div>
+                <div class="row">
+                    <div class="brick" id="wma-adunit13"></div>
+                    <div class="brick" id="wma-adunit14"></div>
+                    <div class="brick" id="wma-adunit15"></div>
+                    <div class="brick" id="wma-adunit16"></div>
+                </div>
+                <div class="row">
+                    <div class="brick" id="wma-adunit17"></div>
+                    <div class="brick" id="wma-adunit18"></div>
+                    <div class="brick" id="wma-adunit19"></div>
+                    <div class="brick" id="wma-adunit20"></div>
+                </div>
+                <div class="row">
+                    <div class="brick" id="wma-adunit21"></div>
+                    <div class="brick" id="wma-adunit22"></div>
+                    <div class="brick" id="wma-adunit23"></div>
+                    <div class="brick" id="wma-adunit24"></div>
+                </div>
+                <div class="row">
+                    <div class="brick" id="wma-adunit25"></div>
+                    <div class="brick" id="wma-adunit26"></div>
+                    <div class="brick" id="wma-adunit27"></div>
+                    <div class="brick" id="wma-adunit28"></div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <footer>
+            <p>&copy; 2024 Cyberorca, Inc.</p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script>
+        // var mainContainer = document.querySelector(".container");
+        // for (let i = 1; i < 29; i++) {
+        //     let container = document.createElement("div");
+        //     let script = document.createElement("script");
+        //     container.id = `wma-adunit${i}`;
+        //     script.innerHTML = `googletag.cmd.push(function() {googletag.display('wma-adunit${i}'); });`;
+        //     container.innerHTML = script;
+        //     mainContainer.appendChild(container);
+        // }
+    </script>
+</body>
+
+</html>
