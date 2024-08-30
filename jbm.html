@@ -682,7 +682,7 @@
                 }
                 requestManager.adserverRequestSent = true;
                 googletag.cmd.push(function() {
-                    googletag.pubads().refresh([window.DS.slot1, window.DS.slot2, window.DS.slot3, window.DS.slot4]);
+                    googletag.pubads().refresh();
                 });
             }
 
@@ -893,7 +893,7 @@
                     pbjs.requestBids({
                         bidsBackHandler: function() {
                             googletag.cmd.push(function() {
-                                pbjs.setTargetingForGPTAsync(['/92351202/WMA_ROS_300x250_2', '/92351202/WMA_ROS_300x250_1', '/92351202/WMA_ROS_300x250', '/92351202/WMA_ROS_160x600']);
+                                pbjs.setTargetingForGPTAsync();
                                 requestManager.prebid = true; // signals that Prebid request has completed
                                 biddersBack(); // checks whether both APS and Prebid have returned
                                 console.log("PREBID TRIGGER!");
