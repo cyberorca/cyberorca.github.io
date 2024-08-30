@@ -48,7 +48,11 @@
             slot28: {}
         }
 
-
+        /**
+         * We aim to load ads only after the main content has fully loaded. 
+         * To achieve this, we use the window load event.
+         * However, if loading takes too long, we ensure ads still load by using the onLoad event combined with a timeout.
+         * */
         document.addEventListener("DOMContentLoaded", function() {
             console.log('Document ready event.');
             window.adsLoadTimer = setTimeout(function() {
@@ -916,6 +920,7 @@
                 window.slotPath = adUnits.map(v => v.code)
 
                 executeParallelAuctionAlongsidePrebid(amazonSlots, window.slotPath, window.gamSLots);
+
                 // var REFRESH_TIMER = 60000;
                 // Run the interval funcion to fetch new bids and then call to the adserver.
                 // window.setInterval(function(){
@@ -999,19 +1004,8 @@
         };
 
         // Set the timer
-
-
-
-
-
-
-
-
         //var slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24, slot25, slot26, slot27, slot28;
         // slotRefreshArray = [slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot21, slot22, slot23, slot24, slot25, slot26, slot27];
-
-
-
         // i am thinking of just calling executeParallelAuctionAlongsidePrebid() again here, but how do i pass the variables into it? prebid ad units, gam units and amazon slots?
     </script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
