@@ -947,7 +947,13 @@
             };
             // when both APS and Prebid have returned, initiate ad request
             function biddersBack() {
-                console.log('Received bids for: ', requestManager.aps ? 'Amazon' : (requestManager.prebid ? 'Prebid' : 'None'));
+                if (requestManager.aps) {
+                    console.log('Received bids for: Amazon');
+                }
+                if (requestManager.prebid) {
+                    console.log('Received bids for: Prebid');
+                }
+
                 if (requestManager.aps && requestManager.prebid) {
                     sendAdserverRequest();
                 }
