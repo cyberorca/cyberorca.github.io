@@ -303,7 +303,8 @@
                         a.style[p] = i
                     } catch (m) {}
                     if (a.style[p] != f) return d(), "pfx" != t || p
-                } return d(), !1
+                }
+            return d(), !1
         }
         var s = e("./contains"),
             a = e("./mStyle"),
@@ -1158,7 +1159,8 @@
                         var p = void 0;
                         for (var f in e) e.hasOwnProperty(f) && (p && i(p, a - 1), p = f, a++);
                         p && i(p, a - 1, !0)
-                    } return 0 === a && (o = s(this)), o
+                    }
+                return 0 === a && (o = s(this)), o
             }), e.registerHelper("if", function(e, t) {
                 return g(e) && (e = e.call(this)), !t.hash.includeZero && !e || d.isEmpty(e) ? t.inverse(this) : t.fn(this)
             }), e.registerHelper("unless", function(t, i) {
@@ -2211,7 +2213,7 @@
                 l = {
                     WebkitTransition: "webkitTransitionEnd",
                     transition: "transitionend"
-                } [o],
+                }[o],
                 d = {
                     transform: r,
                     transition: o,
@@ -4044,7 +4046,8 @@
                             if (n[i]) {
                                 var s = n[i].split("=");
                                 s.length < 2 || (t[s[0]] = s[1])
-                            } if (l.galleryPIDs) {
+                            }
+                        if (l.galleryPIDs) {
                             var a = t.pid;
                             for (t.pid = 0, i = 0; i < Xt.length; i++)
                                 if (Xt[i].pid === a) {
@@ -4155,8 +4158,7 @@
             }
 
             function o(e, t) {
-                var i = arguments;
-                {
+                var i = arguments; {
                     if (1 !== arguments.length || "string" != typeof e) {
                         for (var n = 0; n < this.length; n += 1)
                             if (2 === i.length) this[n].setAttribute(e, t);
@@ -4174,8 +4176,7 @@
             }
 
             function l(e, t) {
-                var i;
-                {
+                var i; {
                     if ("undefined" != typeof t) {
                         for (var n = 0; n < this.length; n += 1) i = this[n], i.dom7ElementDataStorage || (i.dom7ElementDataStorage = {}), i.dom7ElementDataStorage[e] = t;
                         return this
@@ -4677,7 +4678,8 @@
                     if ("undefined" != typeof n[t]) {
                         var o = n[t].offsetHeight;
                         s = o > s ? o : s
-                    } s && i.$wrapperEl.css("height", s + "px")
+                    }
+                s && i.$wrapperEl.css("height", s + "px")
             }
 
             function R() {
@@ -5224,7 +5226,8 @@
                                 if (l[C] > -y) {
                                     T = C;
                                     break
-                                } y = Math.abs(l[T] - y) < Math.abs(l[T - 1] - y) || "next" === t.swipeDirection ? l[T] : l[T - 1], y = -y
+                                }
+                            y = Math.abs(l[T] - y) < Math.abs(l[T - 1] - y) || "next" === t.swipeDirection ? l[T] : l[T - 1], y = -y
                         }
                         if (_ && t.once("transitionEnd", function() {
                                 t.loopFix()
@@ -8031,7 +8034,8 @@
                                     j = c.shadowScale / M,
                                     I = c.shadowOffset;
                                 t.transform("scale3d(" + E + ", 1, " + j + ") translate3d(0px, " + (r / 2 + I) + "px, " + -r / 2 / j + "px) rotateX(-90deg)")
-                            } var P = Ge.isSafari || Ge.isUiWebView ? -d / 2 : 0;
+                            }
+                        var P = Ge.isSafari || Ge.isUiWebView ? -d / 2 : 0;
                         s.transform("translate3d(0px,0," + P + "px) rotateX(" + (i.isHorizontal() ? 0 : p) + "deg) rotateY(" + (i.isHorizontal() ? -p : 0) + "deg)")
                     },
                     setTransition: function(e) {
@@ -13130,7 +13134,7 @@
                     var a, r = "/" !== window.location.pathname;
                     r && n.ajax({
                         method: "GET",
-                        url: "https://www.fimela.com/get_footer",
+                        url: "/get_footer",
                         success: null,
                         dataType: "html",
                         async: !0
@@ -18273,7 +18277,8 @@
                         } else {
                             if (n === t) return this.options[i] === t ? null : this.options[i];
                             r[i] = n
-                        } return this._setOptions(r), this
+                        }
+                    return this._setOptions(r), this
                 },
                 _setOptions: function(e) {
                     var t;
@@ -18840,7 +18845,8 @@
                             if (this.direction = 1 === a ? "down" : "up", "pointer" !== this.options.tolerance && !this._intersectsWithSides(n)) break;
                             this._rearrange(t, n), this._trigger("change", t, this._uiHash());
                             break
-                        } return this._contactContainers(t), e.ui.ddmanager && e.ui.ddmanager.drag(this, t), this._trigger("sort", t, this._uiHash()), this.lastPositionAbs = this.positionAbs, !1
+                        }
+                    return this._contactContainers(t), e.ui.ddmanager && e.ui.ddmanager.drag(this, t), this._trigger("sort", t, this._uiHash()), this.lastPositionAbs = this.positionAbs, !1
                 },
                 _mouseStop: function(t, i) {
                     if (t) {
@@ -19877,7 +19883,8 @@
                                     return isNaN(t) ? h : t
                                 }, f = p(u[0]), m = Math.max(f, p(u[1] || "")), f = n ? Math.max(f, n.getFullYear()) : f, m = s ? Math.min(m, s.getFullYear()) : m, e.yearshtml += "<select class='ui-datepicker-year' data-handler='selectYear' data-event='change'>"; f <= m; f++) e.yearshtml += "<option value='" + f + "'" + (f === i ? " selected='selected'" : "") + ">" + f + "</option>";
                             e.yearshtml += "</select>", y += e.yearshtml, e.yearshtml = null
-                        } return y += this._get(e, "yearSuffix"), w && (y += (!a && g && v ? "" : "&#xa0;") + b), y += "</div>"
+                        }
+                    return y += this._get(e, "yearSuffix"), w && (y += (!a && g && v ? "" : "&#xa0;") + b), y += "</div>"
                 },
                 _adjustInstDate: function(e, t, i) {
                     var n = e.drawYear + ("Y" === i ? t : 0),
@@ -20351,7 +20358,8 @@
                                 } catch (err) {
                                     inlineSettings[attrName] = attrValue
                                 }
-                            } overrides = {
+                            }
+                        overrides = {
                             beforeShow: function(e, t) {
                                 if ($.isFunction(tp_inst._defaults.evnts.beforeShow)) return tp_inst._defaults.evnts.beforeShow.call($input[0], e, t, tp_inst)
                             },
